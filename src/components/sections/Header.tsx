@@ -18,14 +18,15 @@ export const Header: React.FC = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          
+
           // Determine if scrolled enough to change appearance
           setIsScrolled(currentScrollY > 50);
-          
+
           // Hide/show logic with threshold to prevent flickering
           const scrollDifference = Math.abs(currentScrollY - lastScrollY);
-          
-          if (scrollDifference > 20) { // Only trigger if scroll difference is significant
+
+          if (scrollDifference > 20) {
+            // Only trigger if scroll difference is significant
             if (currentScrollY < 100) {
               // Always show when near top
               setIsVisible(true);
@@ -36,10 +37,10 @@ export const Header: React.FC = () => {
               // Scrolling down significantly - hide header
               setIsVisible(false);
             }
-            
+
             lastScrollY = currentScrollY;
           }
-          
+
           ticking = false;
         });
         ticking = true;

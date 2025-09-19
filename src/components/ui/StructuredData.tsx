@@ -67,7 +67,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           sameAs: [
             "https://twitter.com/voiceofartist",
             "https://instagram.com/voiceofartist",
-            "https://youtube.com/@voiceofartist",
+            "https://www.youtube.com/@Voauniverse",
           ],
         };
 

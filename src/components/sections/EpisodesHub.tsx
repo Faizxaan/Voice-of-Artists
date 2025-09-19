@@ -284,11 +284,22 @@ export const EpisodesHub: React.FC<EpisodesHubProps> = ({
 
           {/* Results Count */}
           <div className="mt-8 text-center">
-            <p className="body-text text-sm text-gray-600">
+            <p className="body-text text-sm text-gray-600 mb-4">
               Showing {filteredAndSortedEpisodes.length} of {episodes.length}{" "}
               episodes
               {selectedCategory !== "All" && ` in ${selectedCategory}`}
             </p>
+            
+            {/* YouTube Channel Link */}
+            <a
+              href="https://www.youtube.com/@Voauniverse"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-display text-sm uppercase tracking-wider transition-all duration-300 border-2 border-red-600 hover:border-red-700"
+            >
+              <span>📺</span>
+              Visit YouTube Channel
+            </a>
           </div>
         </div>
       </section>
