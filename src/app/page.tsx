@@ -2,6 +2,7 @@ import { Header } from "@/components/sections/Header";
 import { HeroSectionNew } from "@/components/sections/HeroSectionNew";
 import { WhatIsVOASection } from "@/components/sections/WhatIsVOASection";
 import { EpisodesHub } from "@/components/sections/EpisodesHub";
+import { ArtistsAroundTheWorld } from "@/components/sections/ArtistsAroundTheWorldNew";
 import { ArtistQuotesCarousel } from "@/components/sections/ArtistQuotesCarousel";
 import { PromoMaterialsSection } from "@/components/sections/PromoMaterialsSection";
 import { ArtistApplicationForm } from "@/components/sections/ArtistApplicationForm";
@@ -26,6 +27,7 @@ export default function Home() {
         <HeroSectionNew />
         <WhatIsVOASection />
         <EpisodesHub />
+        <ArtistsAroundTheWorld />
         <ArtistQuotesCarousel />
         <PromoMaterialsSection />
         <ArtistApplicationForm />

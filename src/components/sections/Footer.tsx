@@ -8,7 +8,11 @@ export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { name: "YouTube", url: "https://www.youtube.com/@Voauniverse", icon: "📺" },
+    {
+      name: "YouTube",
+      url: "https://www.youtube.com/@Voauniverse",
+      icon: "📺",
+    },
     {
       name: "Instagram",
       url: "https://instagram.com/voiceofartist",

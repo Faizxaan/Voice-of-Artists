@@ -289,7 +289,7 @@ export const EpisodesHub: React.FC<EpisodesHubProps> = ({
               episodes
               {selectedCategory !== "All" && ` in ${selectedCategory}`}
             </p>
-            
+
             {/* YouTube Channel Link */}
             <a
               href="https://www.youtube.com/@Voauniverse"
