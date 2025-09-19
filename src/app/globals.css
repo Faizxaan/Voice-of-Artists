@@ -400,15 +400,29 @@ nav a,
   left: 0;
   right: 0;
   z-index: var(--z-50);
-  background: rgba(26, 35, 50, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all var(--duration-normal) var(--ease-out);
+  background: rgba(26, 35, 50, 0.85);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateY(0);
+  padding: 0.5rem 0;
 }
 
 .header.scrolled {
   background: rgba(26, 35, 50, 0.98);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  padding: 0.25rem 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide header when scrolling down, show when scrolling up */
+.header.hide {
+  transform: translateY(-100%);
+}
+
+.header.show {
+  transform: translateY(0);
 }
 
 .header.scrolled .nav-link {
@@ -418,6 +432,11 @@ nav a,
 .header .logo img,
 .header.scrolled .logo img {
   filter: brightness(0) invert(1);
+  transition: all 0.3s ease;
+}
+
+.header.scrolled .logo img {
+  transform: scale(0.9);
 }
 
 .nav-link {
@@ -428,12 +447,31 @@ nav a,
   text-decoration: none;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-lg);
-  transition: all var(--duration-fast) var(--ease-out);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .nav-link:hover {
   color: var(--color-neon-lime);
-  background: rgba(163, 230, 53, 0.1);
+  background: rgba(163, 230, 53, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(163, 230, 53, 0.2);
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-neon-lime);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::before {
+  width: 100%;
 }
 
 /* Enhanced Episode Cards - Floating Over Background */
