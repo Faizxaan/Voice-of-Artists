@@ -1,0 +1,343 @@
+
+> voa-website@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.3 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.31.146:3000
+   - Experiments (use with caution):
+     ✓ optimizeCss
+     · optimizePackageImports
+
+ ✓ Starting...
+ ✓ Ready in 945ms
+ ○ Compiling / ...
+ ✓ Compiled / in 2.1s
+ GET / 200 in 2498ms
+ ⚠ The "images.domains" configuration is deprecated. Please use "images.remotePatterns" configuration instead.
+ ✓ Compiled /favicon.ico in 156ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 412ms
+ ✓ Compiled in 130ms
+ GET / 200 in 258ms
+ GET / 200 in 215ms
+ GET / 200 in 85ms
+ GET / 200 in 109ms
+ GET / 200 in 70ms
+ GET / 200 in 79ms
+ GET / 200 in 49ms
+ GET / 200 in 64ms
+ GET / 200 in 97ms
+ GET / 200 in 51ms
+ GET / 200 in 67ms
+ GET / 200 in 61ms
+ GET / 200 in 64ms
+ ✓ Compiled /admin in 381ms
+ GET /admin 200 in 482ms
+ GET / 200 in 219ms
+ GET / 200 in 205ms
+ ✓ Compiled in 439ms
+ ✓ Compiled in 120ms
+ ✓ Compiled in 207ms
+ ✓ Compiled in 93ms
+ ✓ Compiled in 163ms
+ ✓ Compiled in 105ms
+ ✓ Compiled in 138ms
+ ✓ Compiled in 188ms
+ ✓ Compiled in 133ms
+ ✓ Compiled in 157ms
+ ✓ Compiled in 124ms
+ ✓ Compiled in 163ms
+ GET /?id=dfc5fa3c-e97f-4b58-84cd-e3f836750392&vscodeBrowserReqId=1758204707895 200 in 464ms
+ GET / 200 in 185ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 289ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 269ms
+ GET / 200 in 59ms
+ GET / 200 in 194ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 238ms
+ GET / 200 in 71ms
+ GET / 200 in 65ms
+ GET / 200 in 99ms
+ GET / 200 in 62ms
+ GET / 200 in 111ms
+ GET / 200 in 57ms
+ GET / 200 in 65ms
+ GET / 200 in 60ms
+ GET / 200 in 82ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 584ms
+ ✓ Compiled in 431ms
+ GET / 200 in 1064ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 252ms
+ GET / 200 in 418ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 319ms
+ GET / 200 in 636ms
+ GET / 200 in 845ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 518ms
+ GET / 200 in 561ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 272ms
+ GET / 200 in 345ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 253ms
+ ✓ Compiled in 1140ms
+ ✓ Compiled in 63ms
+ ✓ Compiled / in 202ms
+ GET / 200 in 518ms
+ GET / 200 in 447ms
+ ✓ Compiled in 163ms
+ ✓ Compiled in 120ms
+ ✓ Compiled in 308ms
+ ✓ Compiled in 502ms
+ ✓ Compiled in 0ms
+ ✓ Compiled / in 157ms
+ GET / 200 in 413ms
+ GET / 200 in 465ms
+ ✓ Compiled in 155ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ReferenceError: Cannot access 'maxIndex' before initialization
+    at ArtistQuotesCarousel (src/components/sections/ArtistQuotesCarousel.tsx:114:22)
+  112 |
+  113 |     return () => clearInterval(interval);
+> 114 |   }, [isAutoPlaying, maxIndex]);
+      |                      ^
+  115 |
+  116 |   // Responsive card count
+  117 |   useEffect(() => { {
+  digest: '1348173716'
+}
+ GET / 500 in 630ms
+ ⨯ ReferenceError: Cannot access 'maxIndex' before initialization
+    at ArtistQuotesCarousel (src/components/sections/ArtistQuotesCarousel.tsx:114:22)
+  112 |
+  113 |     return () => clearInterval(interval);
+> 114 |   }, [isAutoPlaying, maxIndex]);
+      |                      ^
+  115 |
+  116 |   // Responsive card count
+  117 |   useEffect(() => { {
+  digest: '1348173716'
+}
+ GET / 500 in 684ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 492ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 484ms
+ GET /favicon.ico 200 in 362ms
+ GET /favicon.ico 200 in 312ms
+ ✓ Compiled in 358ms
+ ✓ Compiled in 169ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled / in 62ms
+ GET / 200 in 796ms
+ GET / 200 in 794ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 284ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 282ms
+ ✓ Compiled in 187ms
+ ✓ Compiled in 398ms
+ ✓ Compiled in 240ms
+ ✓ Compiled in 690ms
+ ✓ Compiled in 5ms
+ ✓ Compiled / in 93ms
+ GET / 200 in 741ms
+ GET / 200 in 742ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 262ms
+ GET / 200 in 1129ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 246ms
+ GET /admin 200 in 146ms
+ GET / 200 in 242ms
+ ✓ Compiled in 600ms
+ GET / 200 in 884ms
+ GET / 200 in 66ms
+ GET / 200 in 68ms
+ GET / 200 in 72ms
+ GET / 200 in 100ms
+ GET / 200 in 68ms
+ GET / 200 in 138ms
+ GET / 200 in 56ms
+ GET / 200 in 65ms
+ GET / 200 in 72ms
+ ✓ Compiled in 1490ms
+ ✓ Compiled in 313ms
+ ✓ Compiled in 280ms
+ ✓ Compiled / in 244ms
+ GET / 200 in 689ms
+ GET / 200 in 603ms
+ ✓ Compiled in 1355ms
+ ✓ Compiled / in 260ms
+ GET / 200 in 500ms
+ GET / 200 in 505ms
+ ✓ Compiled in 180ms
+ ✓ Compiled in 904ms
+ ✓ Compiled in 768ms
+ ✓ Compiled in 609ms
+ ✓ Compiled in 397ms
+ ✓ Compiled in 189ms
+ ✓ Compiled in 653ms
+ ✓ Compiled in 217ms
+ ✓ Compiled in 212ms
+ ✓ Compiled in 244ms
+ ✓ Compiled in 644ms
+ ✓ Compiled in 910ms
+ ✓ Compiled in 244ms
+ ✓ Compiled in 215ms
+ ✓ Compiled in 538ms
+ ✓ Compiled in 813ms
+ ✓ Compiled in 1166ms
+ ✓ Compiled in 432ms
+ ✓ Compiled in 248ms
+ ✓ Compiled in 312ms
+ ✓ Compiled in 868ms
+ ✓ Compiled in 522ms
+ ✓ Compiled in 365ms
+ ✓ Compiled in 187ms
+ ✓ Compiled in 429ms
+ ✓ Compiled in 231ms
+ ✓ Compiled in 466ms
+ ✓ Compiled in 353ms
+ ✓ Compiled / in 122ms
+ GET / 200 in 716ms
+ GET / 200 in 666ms
+ ✓ Compiled in 1382ms
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:310:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:263:28)
+  308 |
+  309 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 310 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  311 |                       <span>{mention.readTime}</span>
+  312 |                       <Eye className="w-3 h-3" />
+  313 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 2068ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 436ms
+ GET /favicon.ico 200 in 340ms
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:310:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:263:28)
+  308 |
+  309 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 310 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  311 |                       <span>{mention.readTime}</span>
+  312 |                       <Eye className="w-3 h-3" />
+  313 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 300ms
+ GET /favicon.ico 200 in 261ms
+ ✓ Compiled in 618ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:310:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:263:28)
+  308 |
+  309 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 310 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  311 |                       <span>{mention.readTime}</span>
+  312 |                       <Eye className="w-3 h-3" />
+  313 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 471ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 251ms
+ GET /favicon.ico 200 in 271ms
+ ✓ Compiled in 437ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:310:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:263:28)
+  308 |
+  309 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 310 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  311 |                       <span>{mention.readTime}</span>
+  312 |                       <Eye className="w-3 h-3" />
+  313 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 1431ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 241ms
+ GET /favicon.ico 200 in 260ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 290ms
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:310:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:263:28)
+  308 |
+  309 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 310 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  311 |                       <span>{mention.readTime}</span>
+  312 |                       <Eye className="w-3 h-3" />
+  313 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 795ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 371ms
+ GET /favicon.ico 200 in 297ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 549ms
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:310:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:263:28)
+  308 |
+  309 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 310 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  311 |                       <span>{mention.readTime}</span>
+  312 |                       <Eye className="w-3 h-3" />
+  313 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 1008ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 477ms
+ GET /favicon.ico 200 in 348ms
+ ✓ Compiled in 523ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:310:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:263:28)
+  308 |
+  309 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 310 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  311 |                       <span>{mention.readTime}</span>
+  312 |                       <Eye className="w-3 h-3" />
+  313 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 627ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 386ms
+ GET /favicon.ico 200 in 276ms
+ ✓ Compiled in 741ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 0ms
+ ⨯ ReferenceError: Calendar is not defined
+    at <unknown> (src/components/sections/PressSection.tsx:306:24)
+    at Array.map (<anonymous>)
+    at PressSection (src/components/sections/PressSection.tsx:259:28)
+  304 |
+  305 |                     <div className="flex items-center gap-2 text-xs text-gray-500">
+> 306 |                       <Calendar className="w-3 h-3" />
+      |                        ^
+  307 |                       <span>{mention.readTime}</span>
+  308 |                       <Eye className="w-3 h-3" />
+  309 |                       <span>{mention.views}</span> {
+  digest: '2282150094'
+}
+ GET / 500 in 1681ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 271ms
+ GET /favicon.ico 200 in 249ms
+ ✓ Compiled in 2.4s
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 2336ms
+ GET /favicon.ico?favicon.0b3bf435.ico 200 in 285ms
+[?25h

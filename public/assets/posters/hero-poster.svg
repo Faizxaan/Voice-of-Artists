@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="1200" viewBox="0 0 800 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Matching Website Gradients -->
+    <linearGradient id="skyBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f9ff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#e0f2fe;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#7dd3fc;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="centerHighlight" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#7dd3fc;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.1" />
+    </radialGradient>
+    
+    <linearGradient id="accentGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a3e635;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#84cc16;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Subtle Effects -->
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="dropShadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#0ea5e9" flood-opacity="0.2"/>
+    </filter>
+    
+    <!-- Paper Texture matching website -->
+    <pattern id="subtleTexture" patternUnits="userSpaceOnUse" width="60" height="60">
+      <circle cx="15" cy="15" r="0.5" fill="#cbd5e1" opacity="0.2"/>
+      <circle cx="45" cy="30" r="0.3" fill="#cbd5e1" opacity="0.15"/>
+      <circle cx="30" cy="45" r="0.4" fill="#cbd5e1" opacity="0.1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background matching website -->
+  <rect width="800" height="1200" fill="url(#skyBlueGradient)"/>
+  
+  <!-- Subtle texture overlay -->
+  <rect width="800" height="1200" fill="url(#subtleTexture)" opacity="0.3"/>
+  
+  <!-- Center highlight -->
+  <rect width="800" height="1200" fill="url(#centerHighlight)"/>
+  
+  <!-- Clean modern frame -->
+  <rect x="60" y="40" width="680" height="1120" fill="rgba(255,255,255,0.9)" 
+        stroke="#a3e635" stroke-width="3" rx="16" filter="url(#dropShadow)"/>
+  
+  <!-- Inner content area -->
+  <rect x="80" y="60" width="640" height="1080" fill="rgba(248,250,252,0.8)" rx="12"/>
+  
+  <!-- VOA Title - matching website typography -->
+  <text x="400" y="180" font-family="Fredoka One, Impact, Arial Black, sans-serif" 
+        font-size="84" font-weight="900" text-anchor="middle" fill="#1f2937">
+    VOA
+  </text>
+  
+  <!-- Elegant underline -->
+  <rect x="300" y="200" width="200" height="4" fill="url(#accentGreen)" rx="2"/>
+  
+  <!-- Subtitle with proper spacing -->
+  <text x="400" y="240" font-family="Inter, Arial, sans-serif" 
+        font-size="20" font-weight="300" text-anchor="middle" 
+        fill="#64748b" letter-spacing="6px">
+    VOICE OF ARTIST
+  </text>
+  
+  <!-- Central artistic element - Modern microphone -->
+  <g transform="translate(400, 450)">
+    <!-- Microphone design -->
+    <rect x="-30" y="-80" width="60" height="100" rx="30" 
+          fill="rgba(31,41,55,0.1)" stroke="#6b7280" stroke-width="2"/>
+    <rect x="-25" y="-75" width="50" height="90" rx="25" fill="#f8fafc"/>
+    
+    <!-- Modern grille pattern -->
+    <g opacity="0.6">
+      <line x1="-15" y1="-50" x2="15" y2="-50" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="-15" y1="-35" x2="15" y2="-35" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="-15" y1="-20" x2="15" y2="-20" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="-15" y1="-5" x2="15" y2="-5" stroke="#94a3b8" stroke-width="1"/>
+      <line x1="-15" y1="10" x2="15" y2="10" stroke="#94a3b8" stroke-width="1"/>
+    </g>
+    
+    <!-- Modern sound waves -->
+    <g opacity="0.7">
+      <path d="M -60,-30 Q -70,-40 -60,-50" stroke="#7dd3fc" stroke-width="3" fill="none"/>
+      <path d="M 60,-30 Q 70,-40 60,-50" stroke="#7dd3fc" stroke-width="3" fill="none"/>
+      <path d="M -80,-30 Q -95,-45 -80,-60" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+      <path d="M 80,-30 Q 95,-45 80,-60" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+    </g>
+    
+    <!-- Clean stand -->
+    <rect x="-2" y="20" width="4" height="40" fill="#6b7280" rx="2"/>
+    <ellipse cx="0" cy="60" rx="15" ry="5" fill="#94a3b8"/>
+  </g>
+  
+  <!-- Artistic quote elements -->
+  <g fill="#7dd3fc" opacity="0.3">
+    <text x="150" y="350" font-family="Georgia, serif" font-size="48" font-weight="300">"</text>
+    <text x="620" y="650" font-family="Georgia, serif" font-size="48" font-weight="300">"</text>
+  </g>
+  
+  <!-- Elegant decorative lines -->
+  <g stroke="#a3e635" stroke-width="1" fill="none" opacity="0.5">
+    <path d="M 120 320 Q 180 280 240 320"/>
+    <path d="M 560 320 Q 620 280 680 320"/>
+    <path d="M 120 700 Q 180 740 240 700"/>
+    <path d="M 560 700 Q 620 740 680 700"/>
+  </g>
+  
+  <!-- Central featured content area -->
+  <rect x="150" y="550" width="500" height="200" fill="rgba(255,255,255,0.9)" 
+        stroke="#e2e8f0" stroke-width="1" rx="12" filter="url(#dropShadow)"/>
+  
+  <!-- Featured content text -->
+  <text x="400" y="590" font-family="Inter, Arial, sans-serif" 
+        font-size="16" font-weight="600" text-anchor="middle" fill="#a3e635">
+    FEATURED TRANSMISSION
+  </text>
+  
+  <text x="400" y="620" font-family="Fredoka One, Impact, Arial Black, sans-serif" 
+        font-size="28" font-weight="700" text-anchor="middle" fill="#1f2937">
+    Latest Artist Story
+  </text>
+  
+  <text x="400" y="650" font-family="Inter, Arial, sans-serif" 
+        font-size="16" font-weight="400" text-anchor="middle" fill="#64748b">
+    Discover emerging artists and their
+  </text>
+  
+  <text x="400" y="675" font-family="Inter, Arial, sans-serif" 
+        font-size="16" font-weight="400" text-anchor="middle" fill="#64748b">
+    authentic creative journeys
+  </text>
+  
+  <!-- Call to action -->
+  <rect x="300" y="700" width="200" height="40" fill="url(#accentGreen)" rx="20"/>
+  <text x="400" y="725" font-family="Inter, Arial, sans-serif" 
+        font-size="16" font-weight="600" text-anchor="middle" fill="#ffffff">
+    Click to Watch
+  </text>
+  
+  <!-- Art Above Chart tagline -->
+  <rect x="250" y="850" width="300" height="60" fill="rgba(163,230,53,0.1)" 
+        stroke="#a3e635" stroke-width="2" rx="8"/>
+  <text x="400" y="885" font-family="Fredoka One, Impact, Arial Black, sans-serif" 
+        font-size="24" font-weight="700" text-anchor="middle" fill="#1f2937">
+    ART ABOVE CHART
+  </text>
+  
+  <!-- Platform description -->
+  <text x="400" y="980" font-family="Inter, Arial, sans-serif" 
+        font-size="14" font-weight="400" text-anchor="middle" fill="#64748b" opacity="0.8">
+    An online platform for artists to explore their creative self,
+  </text>
+  <text x="400" y="1000" font-family="Inter, Arial, sans-serif" 
+        font-size="14" font-weight="400" text-anchor="middle" fill="#64748b" opacity="0.8">
+    inspire others through their journeys, and contribute towards
+  </text>
+  <text x="400" y="1020" font-family="Inter, Arial, sans-serif" 
+        font-size="14" font-weight="400" text-anchor="middle" fill="#64748b" opacity="0.8">
+    building a positive culture in society.
+  </text>
+  
+  <!-- Hashtag -->
+  <text x="400" y="1080" font-family="JetBrains Mono, monospace" 
+        font-size="16" font-weight="400" text-anchor="middle" fill="#7dd3fc" opacity="0.7">
+    #VoiceOfArtist
+  </text>
+  
+  <!-- Corner decorative elements -->
+  <g stroke="#7dd3fc" stroke-width="2" fill="none" opacity="0.4">
+    <path d="M 100 80 L 120 80 L 120 100"/>
+    <path d="M 680 80 L 700 80 L 700 100"/>
+    <path d="M 100 1120 L 120 1120 L 120 1100"/>
+    <path d="M 680 1120 L 700 1120 L 700 1100"/>
+  </g>
+  
+  <!-- Subtle floating elements -->
+  <g opacity="0.3">
+    <circle cx="150" cy="280" r="3" fill="#a3e635"/>
+    <circle cx="650" cy="380" r="2" fill="#7dd3fc"/>
+    <circle cx="180" cy="800" r="2.5" fill="#0ea5e9"/>
+    <circle cx="620" cy="920" r="3" fill="#a3e635"/>
+  </g>
+  
+  <!-- Modern geometric accents -->
+  <g fill="none" stroke="#e2e8f0" stroke-width="1" opacity="0.5">
+    <polygon points="120,200 140,180 160,200 140,220"/>
+    <polygon points="640,250 660,230 680,250 660,270"/>
+    <polygon points="140,950 160,930 180,950 160,970"/>
+    <polygon points="620,1000 640,980 660,1000 640,1020"/>
+  </g>
+</svg>

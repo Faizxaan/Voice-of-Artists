@@ -1,0 +1,10 @@
+<!-- Section Separator Arc SVG - Smaller flow element for content sections -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8fafc;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#e2e8f0;stop-opacity:0.4"/>
+    </linearGradient>
+  </defs>
+  <path d="M0,100 Q360,20 720,60 T1440,40 L1440,0 L0,0 Z" fill="url(#sectionGradient)"/>
+</svg>
