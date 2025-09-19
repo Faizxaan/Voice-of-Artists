@@ -2,6 +2,32 @@
 
 A black & white platform that elevates artists and allied patrons. Built with Next.js, TypeScript, and Tailwind CSS, featuring a cinematic, tactile, handcrafted aesthetic with poster imagery and monospaced typography.
 
+## 🚀 Quick Setup for Collaborators
+
+### 1. Clone and Install
+```bash
+# Clone the repository
+git clone https://github.com/Faizxaan/Voice-of-Artists.git
+cd Voice-of-Artists
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### 2. Open in Browser
+Visit [http://localhost:3000](http://localhost:3000) to see the website.
+
+### 3. Development Commands
+```bash
+npm run dev         # Start development server
+npm run build       # Build for production
+npm run start       # Start production server
+npm run lint        # Check code quality
+```
+
 ## 🎨 Design Philosophy
 
 **Manifesto:** Art Above Chart
