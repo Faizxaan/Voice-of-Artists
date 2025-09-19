@@ -28,15 +28,15 @@ export const Header: React.FC = () => {
   return (
     <header className={`header ${isScrolled ? "scrolled" : ""}`}>
       <div className="container">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between h-28">
           {/* Logo */}
           <Link href="/" className="logo">
             <Image
               src="/images/Voice of Artist Logo-2.png"
               alt="Voice of Artist Logo"
-              width={240}
-              height={80}
-              className="h-20 w-auto filter drop-shadow-lg"
+              width={300}
+              height={100}
+              className="h-24 w-auto filter drop-shadow-lg"
             />
           </Link>
 

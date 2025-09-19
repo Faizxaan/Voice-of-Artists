@@ -30,9 +30,8 @@ export const HeroSectionNew: React.FC<HeroSectionProps> = ({
             <div className="hero-main-content">
               {/* Logo-style Title */}
               <div className="hero-title-section">
-                <h1 className="voa-title">VOA</h1>
-                <div className="voa-subtitle-container">
-                  <span className="voa-subtitle">VOICE OF ARTIST</span>
+                <div className="voa-title-container">
+                  <h1 className="voa-main-title">VOICE OF ARTIST</h1>
                   <div className="green-accent-line"></div>
                 </div>
               </div>
