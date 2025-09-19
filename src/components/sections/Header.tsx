@@ -9,30 +9,46 @@ export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
+    let lastScrollY = 0;
+    let ticking = false;
+
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // Determine if scrolled enough to change appearance
-      setIsScrolled(currentScrollY > 50);
-      
-      // Hide/show logic
-      if (currentScrollY < lastScrollY || currentScrollY < 100) {
-        // Scrolling up or near top - show header
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down and not near top - hide header
-        setIsVisible(false);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Determine if scrolled enough to change appearance
+          setIsScrolled(currentScrollY > 50);
+          
+          // Hide/show logic with threshold to prevent flickering
+          const scrollDifference = Math.abs(currentScrollY - lastScrollY);
+          
+          if (scrollDifference > 20) { // Only trigger if scroll difference is significant
+            if (currentScrollY < 100) {
+              // Always show when near top
+              setIsVisible(true);
+            } else if (currentScrollY < lastScrollY) {
+              // Scrolling up - show header
+              setIsVisible(true);
+            } else if (currentScrollY > lastScrollY + 50) {
+              // Scrolling down significantly - hide header
+              setIsVisible(false);
+            }
+            
+            lastScrollY = currentScrollY;
+          }
+          
+          ticking = false;
+        });
+        ticking = true;
       }
-      
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, []); // Empty dependency array!
 
   const navItems = [
     { name: "About", href: "#about" },
@@ -42,7 +58,9 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header className={`header ${isScrolled ? "scrolled" : ""} ${isVisible ? "show" : "hide"}`}>
+    <header
+      className={`header ${isScrolled ? "scrolled" : ""} ${isVisible ? "show" : "hide"}`}
+    >
       <div className="container">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}

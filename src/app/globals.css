@@ -403,7 +403,7 @@ nav a,
   background: rgba(26, 35, 50, 0.85);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.3s ease-out;
   transform: translateY(0);
   padding: 0.5rem 0;
 }
@@ -419,10 +419,12 @@ nav a,
 /* Hide header when scrolling down, show when scrolling up */
 .header.hide {
   transform: translateY(-100%);
+  transition: transform 0.3s ease-out;
 }
 
 .header.show {
   transform: translateY(0);
+  transition: transform 0.3s ease-out;
 }
 
 .header.scrolled .nav-link {
@@ -460,7 +462,7 @@ nav a,
 }
 
 .nav-link::before {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
