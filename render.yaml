@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: voice-of-artists
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NEXT_PUBLIC_YOUTUBE_API_KEY
+        fromSecret: NEXT_PUBLIC_YOUTUBE_API_KEY
+      - key: NEXT_PUBLIC_VOA_CHANNEL_ID
+        fromSecret: NEXT_PUBLIC_VOA_CHANNEL_ID

@@ -154,6 +154,17 @@ export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
   className = "",
   thumbnailUrl,
 }) => {
+  // Preferred source order: local cache → provided URL → YouTube fallback
+  const sources = [
+    `/thumbnails/${videoId}.jpg`,
+    thumbnailUrl || '',
+    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+  ].filter(Boolean) as string[];
+
+  // Hooks must be called unconditionally in the same order on every render
+  const [srcIndex, setSrcIndex] = useState(0);
+  const activeSrc = sources[srcIndex];
+
   // If no videoId, show a placeholder immediately
   if (!videoId || videoId.length !== 11) {
     return (
@@ -171,16 +182,6 @@ export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
       </div>
     );
   }
-
-  // Preferred source order: local cache → provided URL → YouTube fallback
-  const sources = [
-    `/thumbnails/${videoId}.jpg`,
-    thumbnailUrl || '',
-    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-  ].filter(Boolean) as string[];
-
-  const [srcIndex, setSrcIndex] = useState(0);
-  const activeSrc = sources[srcIndex];
 
   return (
     <div
