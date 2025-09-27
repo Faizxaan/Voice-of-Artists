@@ -48,26 +48,6 @@ export interface Promo {
   thumbnail: string;
 }
 
-export interface Application {
-  id: string;
-  name: string;
-  email: string;
-  discipline: string;
-  bio: string;
-  sample_links: string[];
-  files: string[]; // S3 URLs
-  youtube_link?: string;
-  social_links: {
-    platform: string;
-    url: string;
-  }[];
-  artist_statement: string;
-  consent: boolean;
-  status: "pending" | "approved" | "rejected";
-  notes?: string;
-  created_at: string;
-}
-
 export interface VideoPlayerProps {
   videoId: string;
   title: string;

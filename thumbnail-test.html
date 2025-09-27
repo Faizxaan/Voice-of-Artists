@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Thumbnail Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .thumbnail {
+            width: 320px;
+            height: 180px;
+            border: 2px solid black;
+            margin: 10px;
+            object-fit: cover;
+        }
+        .test-item {
+            margin-bottom: 30px;
+        }
+        .url {
+            font-family: monospace;
+            background: #f0f0f0;
+            padding: 5px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube Thumbnail Test</h1>
+    <p>Testing the YouTube thumbnail URLs used in the fallback episodes:</p>
+    
+    <div class="test-item">
+        <h3>Rick Roll (dQw4w9WgXcQ)</h3>
+        <div class="url">https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg</div>
+        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Rick Roll thumbnail" class="thumbnail" 
+             onload="console.log('✅ Rick Roll loaded')" 
+             onerror="console.error('❌ Rick Roll failed')">
+    </div>
+    
+    <div class="test-item">
+        <h3>Me at the zoo (jNQXAC9IVRw)</h3>
+        <div class="url">https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg</div>
+        <img src="https://img.youtube.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="Me at the zoo thumbnail" class="thumbnail" 
+             onload="console.log('✅ Me at the zoo loaded')" 
+             onerror="console.error('❌ Me at the zoo failed')">
+    </div>
+    
+    <div class="test-item">
+        <h3>Gangnam Style (9bZkp7q19f0)</h3>
+        <div class="url">https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg</div>
+        <img src="https://img.youtube.com/vi/9bZkp7q19f0/hqdefault.jpg" alt="Gangnam Style thumbnail" class="thumbnail" 
+             onload="console.log('✅ Gangnam Style loaded')" 
+             onerror="console.error('❌ Gangnam Style failed')">
+    </div>
+    
+    <div class="test-item">
+        <h3>Despacito (kJQP7kiw5Fk)</h3>
+        <div class="url">https://img.youtube.com/vi/kJQP7kiw5Fk/hqdefault.jpg</div>
+        <img src="https://img.youtube.com/vi/kJQP7kiw5Fk/hqdefault.jpg" alt="Despacito thumbnail" class="thumbnail" 
+             onload="console.log('✅ Despacito loaded')" 
+             onerror="console.error('❌ Despacito failed')">
+    </div>
+    
+    <div class="test-item">
+        <h3>Smosh (L_jWHffIx5E)</h3>
+        <div class="url">https://img.youtube.com/vi/L_jWHffIx5E/hqdefault.jpg</div>
+        <img src="https://img.youtube.com/vi/L_jWHffIx5E/hqdefault.jpg" alt="Smosh thumbnail" class="thumbnail" 
+             onload="console.log('✅ Smosh loaded')" 
+             onerror="console.error('❌ Smosh failed')">
+    </div>
+
+    <script>
+        console.log('🧪 Thumbnail test page loaded - check console for load results');
+    </script>
+</body>
+</html>

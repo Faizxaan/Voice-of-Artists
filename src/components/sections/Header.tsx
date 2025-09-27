@@ -55,45 +55,45 @@ export const Header: React.FC = () => {
     { name: "About", href: "#about" },
     { name: "Episodes", href: "#episodes" },
     { name: "Promo Materials", href: "#promo-materials" },
-    { name: "Apply", href: "#apply" },
   ];
 
   return (
     <header
-      className={`header ${isScrolled ? "scrolled" : ""} ${isVisible ? "show" : "hide"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? "bg-white/95 backdrop-blur-sm border-b-2 border-black shadow-lg" 
+          : "bg-white/90 backdrop-blur-sm"
+      } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
-      <div className="container">
-        <div className="flex items-center justify-between h-20">
+      <div className="container max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="logo">
+          <Link href="/" className="flex items-center">
             <Image
               src="/images/Voice of Artist Logo-2.png"
               alt="Voice of Artist Logo"
-              width={300}
-              height={100}
-              className="h-24 w-auto filter drop-shadow-lg"
+              width={200}
+              height={60}
+              className="h-12 w-auto filter grayscale"
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href} className="nav-link">
+              <Link 
+                key={item.name} 
+                href={item.href} 
+                className="font-mono text-sm uppercase tracking-wider text-black hover:text-gray-600 transition-colors border-b-2 border-transparent hover:border-black pb-1"
+              >
                 {item.name}
               </Link>
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Link href="#apply" className="btn btn-primary">
-              Apply Now
-            </Link>
-          </div>
-
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-white hover:text-neon-lime transition-colors"
+            className="md:hidden p-2 text-black hover:text-gray-600 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
@@ -103,27 +103,18 @@ export const Header: React.FC = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40">
-            <nav className="py-4">
+          <div className="md:hidden border-t-2 border-black bg-white">
+            <nav className="py-4 space-y-2">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="block px-6 py-3 nav-link"
+                  className="block px-6 py-3 font-mono text-sm uppercase tracking-wider text-black hover:bg-gray-100 transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
               ))}
-              <div className="px-6 pt-4">
-                <Link
-                  href="#apply"
-                  className="btn btn-primary w-full text-center block"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Apply Now
-                </Link>
-              </div>
             </nav>
           </div>
         )}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: "%s | Voice of Artist",
   },
   description:
-    "Voice of Artist (VOA) is a platform where art meets authenticity. Discover emerging artists, their untold stories, and experience music through a cinematic, black-and-white aesthetic that puts art above chart positions.",
+    "Voice Of Artist is an online platform that publishes #VoiceOfArtist from diverse fields to promote a culture of art in the society. The vision is to make local talent global, build a community of artists to share stories to inspire and grow together.",
   keywords: [
     "voice of artist",
     "emerging artists",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Voice of Artist - Art Above Chart",
     description:
-      "Voice of Artist (VOA) is a platform where art meets authenticity. Discover emerging artists, their untold stories, and experience music through a cinematic, black-and-white aesthetic.",
+      "Voice Of Artist is an online platform that publishes #VoiceOfArtist from diverse fields to promote a culture of art in the society. The vision is to make local talent global, build a community of artists to share stories to inspire and grow together.",
     url: "https://voiceofartist.com",
     siteName: "Voice of Artist",
     images: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Voice of Artist - Art Above Chart",
     description:
-      "Voice of Artist (VOA) is a platform where art meets authenticity. Discover emerging artists and their untold stories.",
+      "Voice Of Artist is an online platform that publishes #VoiceOfArtist from diverse fields to promote a culture of art in the society. The vision is to make local talent global, build a community of artists to share stories to inspire and grow together.",
     images: ["/images/twitter-image.jpg"],
     creator: "@voiceofartist",
   },

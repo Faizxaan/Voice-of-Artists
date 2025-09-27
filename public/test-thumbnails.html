@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thumbnail Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .thumbnail { 
+            display: inline-block; 
+            margin: 10px; 
+            border: 2px solid black; 
+            text-align: center;
+        }
+        img { 
+            width: 200px; 
+            height: auto; 
+            display: block;
+        }
+        .error { 
+            color: red; 
+            padding: 10px;
+            background: #ffe6e6;
+            margin: 5px;
+        }
+        .success { 
+            color: green; 
+            padding: 10px;
+            background: #e6ffe6;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thumbnail Loading Test</h1>
+    
+    <!-- Test common video IDs from our collection -->
+    <div class="thumbnail">
+        <h3>Rick Roll (dQw4w9WgXcQ)</h3>
+        <img src="/thumbnails/dQw4w9WgXcQ.jpg" 
+             alt="Rick Roll"
+             onload="showSuccess(this)"
+             onerror="showError(this)" />
+        <div class="status"></div>
+    </div>
+    
+    <div class="thumbnail">
+        <h3>First YouTube Video (jNQXAC9IVRw)</h3>
+        <img src="/thumbnails/jNQXAC9IVRw.jpg" 
+             alt="Me at the zoo"
+             onload="showSuccess(this)"
+             onerror="showError(this)" />
+        <div class="status"></div>
+    </div>
+    
+    <div class="thumbnail">
+        <h3>Gangnam Style (9bZkp7q19f0)</h3>
+        <img src="/thumbnails/9bZkp7q19f0.jpg" 
+             alt="Gangnam Style"
+             onload="showSuccess(this)"
+             onerror="showError(this)" />
+        <div class="status"></div>
+    </div>
+    
+    <div class="thumbnail">
+        <h3>Real API Video (CwmMs5GdtAM)</h3>
+        <img src="/thumbnails/CwmMs5GdtAM.jpg" 
+             alt="API Video"
+             onload="showSuccess(this)"
+             onerror="showError(this)" />
+        <div class="status"></div>
+    </div>
+    
+    <script>
+        function showSuccess(img) {
+            console.log('✅ Image loaded successfully:', img.src);
+            const statusDiv = img.parentElement.querySelector('.status');
+            statusDiv.innerHTML = '<div class="success">✅ Loaded successfully</div>';
+        }
+        
+        function showError(img) {
+            console.error('❌ Image failed to load:', img.src);
+            const statusDiv = img.parentElement.querySelector('.status');
+            statusDiv.innerHTML = '<div class="error">❌ Failed to load</div>';
+        }
+        
+        console.log('🚀 Thumbnail test page loaded');
+    </script>
+</body>
+</html>

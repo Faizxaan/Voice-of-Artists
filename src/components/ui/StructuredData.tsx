@@ -21,7 +21,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           "@type": "WebSite",
           name: "Voice of Artist",
           description:
-            "Voice of Artist (VOA) is a platform where art meets authenticity. Discover emerging artists, their untold stories, and experience music through a cinematic, black-and-white aesthetic.",
+            "Voice Of Artist is an online platform that publishes #VoiceOfArtist from diverse fields to promote a culture of art in the society. The vision is to make local talent global, build a community of artists to share stories to inspire and grow together.",
           url: "https://voiceofartist.com",
           publisher: {
             "@type": "Organization",
@@ -50,7 +50,7 @@ export const StructuredData: React.FC<StructuredDataProps> = ({
           "@type": "Organization",
           name: "Voice of Artist",
           description:
-            "A platform where art meets authenticity. Art Above Chart.",
+            "Voice Of Artist is an online platform that publishes #VoiceOfArtist from diverse fields to promote a culture of art in the society. The vision is to make local talent global, build a community of artists to share stories to inspire and grow together.",
           url: "https://voiceofartist.com",
           logo: {
             "@type": "ImageObject",

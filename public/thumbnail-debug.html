@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thumbnail Debug Test</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .thumbnail { width: 200px; height: 150px; border: 2px solid black; margin: 10px; display: inline-block; }
+        .test-section { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>🔧 Thumbnail Loading Test</h1>
+    
+    <div class="test-section">
+        <h2>Direct Image Tags Test</h2>
+        <img src="/thumbnails/dQw4w9WgXcQ.jpg" alt="Rick Roll" class="thumbnail" onload="console.log('✅ Rick Roll loaded')" onerror="console.error('❌ Rick Roll failed')">
+        <img src="/thumbnails/jNQXAC9IVRw.jpg" alt="Me at the zoo" class="thumbnail" onload="console.log('✅ Me at the zoo loaded')" onerror="console.error('❌ Me at the zoo failed')">
+        <img src="/thumbnails/9bZkp7q19f0.jpg" alt="Gangnam Style" class="thumbnail" onload="console.log('✅ Gangnam Style loaded')" onerror="console.error('❌ Gangnam Style failed')">
+        <img src="/thumbnails/kJQP7kiw5Fk.jpg" alt="Despacito" class="thumbnail" onload="console.log('✅ Despacito loaded')" onerror="console.error('❌ Despacito failed')">
+    </div>
+
+    <div class="test-section">
+        <h2>Background Image Test</h2>
+        <div class="thumbnail" style="background-image: url('/thumbnails/dQw4w9WgXcQ.jpg'); background-size: cover;"></div>
+        <div class="thumbnail" style="background-image: url('/thumbnails/jNQXAC9IVRw.jpg'); background-size: cover;"></div>
+        <div class="thumbnail" style="background-image: url('/thumbnails/9bZkp7q19f0.jpg'); background-size: cover;"></div>
+        <div class="thumbnail" style="background-image: url('/thumbnails/kJQP7kiw5Fk.jpg'); background-size: cover;"></div>
+    </div>
+
+    <script>
+        console.log('🚀 Thumbnail debug test page loaded');
+        // Test programmatic image loading
+        const testImages = ['dQw4w9WgXcQ', 'jNQXAC9IVRw', '9bZkp7q19f0', 'kJQP7kiw5Fk'];
+        testImages.forEach(videoId => {
+            const img = new Image();
+            img.onload = () => console.log(`✅ Programmatic load success: ${videoId}`);
+            img.onerror = () => console.error(`❌ Programmatic load failed: ${videoId}`);
+            img.src = `/thumbnails/${videoId}.jpg`;
+        });
+    </script>
+</body>
+</html>

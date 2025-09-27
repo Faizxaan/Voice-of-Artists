@@ -1,6 +1,34 @@
 # VOA (Voice Of Artist) Website
 
-A black & white platform that elevates artists and allied patrons. Built with Next.js, TypeScript, and Tailwind CSS, featuring a cinematic, tactile, handcrafted aesthetic with poster imagery and monospaced typography.
+A black & white platform that elevates artists and allied patrons. Built with Next.js, TypeScript, and Tailwind CSS, featuring a cinematic, tactile, ha## 📺 YouTube Integration
+
+The Episodes section dynamically loads real YouTube content with smart categorization!
+
+### ✅ Current Features:
+- **Live YouTube Integration**: Pulls real videos from any YouTube channel
+- **Development Ready**: Works with your own channel for testing
+- **Smart Categorization**: Auto-categorizes videos (Painters, Musicians, etc.)
+- **Fallback System**: Beautiful curated episodes when API unavailable
+- **Real Thumbnails**: Direct YouTube thumbnail integration
+- **Responsive Design**: Optimized for all devices
+
+### 🚀 Quick Setup (5 minutes):
+1. **Get YouTube API Key**: [Follow our setup guide](./YOUTUBE_SETUP.md)
+2. **Use Any Channel**: Your own channel or demo channels for testing
+3. **Configure Environment**:
+   ```bash
+   cp .env.example .env.local
+   # Add your API key and channel ID
+   npm run dev
+   ```
+
+### 🎯 For Development:
+- **No API Key?** → Uses curated VOA-style episodes automatically
+- **Demo Channels**: Pre-configured with Google Developers, TEDx, NASA
+- **Your Channel**: Perfect for demonstrating real API integration
+- **Freelance Ready**: Easy to switch to client's channel later
+
+**See [YOUTUBE_SETUP.md](./YOUTUBE_SETUP.md) for detailed instructions**c with poster imagery and monospaced typography.
 
 ## 🚀 Quick Setup for Collaborators
 
@@ -13,6 +41,10 @@ cd Voice-of-Artists
 
 # Install dependencies
 npm install
+
+# (Optional) Set up YouTube API integration
+cp .env.example .env.local
+# Edit .env.local with your YouTube API key and channel ID
 
 # Start development server
 npm run dev
@@ -178,12 +210,31 @@ npm run type-check   # Run TypeScript compiler check
 - **Body**: Roboto Mono, Courier Prime, Space Mono
 - **Script**: Dancing Script, Pacifico (for quotes)
 
-## 🚀 Deployment
+## � YouTube Integration
+
+The Episodes section now pulls real content from the @Voauniverse YouTube channel!
+
+### Current Features:
+- ✅ **Automatic Episode Loading**: Displays real episodes from the YouTube channel
+- ✅ **Fallback Data**: Uses curated episode data when API is unavailable  
+- ✅ **Smart Categorization**: Automatically categorizes videos by content
+- ✅ **Responsive Thumbnails**: Uses YouTube's thumbnail API
+- ✅ **Real Video Links**: Direct links to actual YouTube videos
+
+### Setup YouTube API (Optional):
+1. Get a YouTube Data API v3 key from [Google Cloud Console](https://console.developers.google.com/)
+2. Find your channel ID from the YouTube channel page
+3. Copy `.env.example` to `.env.local` 
+4. Add your API key and channel ID to the environment file
+
+**Note**: If no API key is provided, the site will use curated fallback episodes that match the VOA style and branding.
+
+## �🚀 Deployment
 
 ### Vercel (Recommended)
 
 1. Connect your GitHub repository to Vercel
-2. Set environment variables in Vercel dashboard
+2. Set environment variables in Vercel dashboard (including YouTube API key if desired)
 3. Deploy automatically on push to main branch
 
 ---

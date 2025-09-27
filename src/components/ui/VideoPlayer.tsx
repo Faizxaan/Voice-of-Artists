@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import YouTube from "react-youtube";
 import { X, Play, ExternalLink, Share2 } from "lucide-react";
 import { VideoPlayerProps } from "@/types";
@@ -26,8 +25,8 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   const [showFullDescription, setShowFullDescription] = useState(false);
 
   const opts = {
-    height: "390",
-    width: "640",
+    height: "450",
+    width: "100%",
     playerVars: {
       autoplay: autoplay ? 1 : 0,
       modestbranding: 1,
@@ -48,7 +47,6 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
         console.log("Error sharing:", err);
       }
     } else {
-      // Fallback: copy to clipboard
       navigator.clipboard.writeText(url);
       alert("Link copied to clipboard!");
     }
@@ -59,20 +57,19 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
   };
 
   return (
-    <div
-      className={`bg-white rounded-xl shadow-poster overflow-hidden ${className}`}
-      style={{
-        background: "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
-        border: "1px solid rgba(0, 0, 0, 0.08)",
-      }}
-    >
+    <div className={`bg-white border-2 border-black ${className}`}>
       {/* Video Player */}
-      <div className="relative aspect-video bg-black rounded-t-xl overflow-hidden">
-        <YouTube videoId={videoId} opts={opts} className="w-full h-full" />
+      <div className="relative aspect-video bg-black">
+        <YouTube 
+          videoId={videoId} 
+          opts={opts} 
+          className="w-full h-full" 
+          iframeClassName="w-full h-full"
+        />
         {onClose && (
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 bg-black bg-opacity-60 backdrop-blur-sm text-white p-2.5 rounded-full hover:bg-opacity-80 transition-all border border-white border-opacity-20"
+            className="absolute top-4 right-4 bg-black/70 text-white p-2 border-2 border-white hover:bg-white hover:text-black transition-all"
             aria-label="Close video"
           >
             <X size={20} />
@@ -80,19 +77,19 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
         )}
       </div>
 
-      {/* Video Info */}
-      <div className="p-8 bg-gradient-to-br from-white to-gray-50">
-        <h3 className="font-display text-xl mb-2">{title}</h3>
+      {/* Video Info - Brand Style */}
+      <div className="p-6 bg-white border-t-2 border-black">
+        <h3 className="font-mono text-lg uppercase tracking-wider mb-2">{title}</h3>
 
         {published_at && (
-          <p className="body-text text-sm text-gray-600 mb-4">
+          <p className="font-mono text-xs uppercase tracking-wider text-gray-600 mb-4">
             Published: {new Date(published_at).toLocaleDateString()}
           </p>
         )}
 
         {description && (
-          <div className="mb-4">
-            <p className="body-text text-sm">
+          <div className="mb-6">
+            <p className="font-mono text-sm leading-relaxed text-gray-800">
               {showFullDescription
                 ? description
                 : `${description.substring(0, 150)}${description.length > 150 ? "..." : ""}`}
@@ -100,7 +97,7 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
             {description.length > 150 && (
               <button
                 onClick={() => setShowFullDescription(!showFullDescription)}
-                className="text-blue-600 hover:text-blue-800 text-sm mt-1"
+                className="font-mono text-xs uppercase tracking-wider text-black hover:underline mt-2"
               >
                 {showFullDescription ? "Show less" : "Show more"}
               </button>
@@ -108,11 +105,11 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
           </div>
         )}
 
-        {/* Action Buttons */}
+        {/* Action Buttons - Brand Consistent */}
         <div className="flex flex-col sm:flex-row gap-3">
           <button
             onClick={openInYouTube}
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3 rounded-lg hover:from-red-700 hover:to-red-800 transition-all transform hover:scale-105 shadow-lg font-medium"
+            className="flex items-center justify-center gap-2 bg-red-600 text-white px-4 py-3 border-2 border-red-600 hover:bg-white hover:text-red-600 transition-all font-mono text-xs uppercase tracking-wider"
           >
             <ExternalLink size={16} />
             Watch on YouTube
@@ -120,7 +117,7 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
 
           <button
             onClick={handleShare}
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all transform hover:scale-105 shadow-lg font-medium"
+            className="flex items-center justify-center gap-2 bg-black text-white px-4 py-3 border-2 border-black hover:bg-white hover:text-black transition-all font-mono text-xs uppercase tracking-wider"
           >
             <Share2 size={16} />
             Share
@@ -131,7 +128,7 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
               href={transcriptUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 cta-button-outline text-sm px-4 py-2"
+              className="flex items-center justify-center gap-2 bg-white text-black px-4 py-3 border-2 border-black hover:bg-black hover:text-white transition-all font-mono text-xs uppercase tracking-wider"
             >
               View Transcript
             </a>
@@ -147,6 +144,7 @@ interface VideoThumbnailProps {
   title: string;
   onClick: () => void;
   className?: string;
+  thumbnailUrl?: string; // optional remote or provided URL
 }
 
 export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
@@ -154,30 +152,70 @@ export const VideoThumbnail: React.FC<VideoThumbnailProps> = ({
   title,
   onClick,
   className = "",
+  thumbnailUrl,
 }) => {
+  // If no videoId, show a placeholder immediately
+  if (!videoId || videoId.length !== 11) {
+    return (
+      <div
+        className={`relative cursor-pointer group ${className}`}
+        onClick={onClick}
+      >
+        <div className="relative aspect-video bg-red-200 border-2 border-red-500 overflow-hidden transition-all duration-300 group-hover:shadow-lg flex items-center justify-center">
+          <div className="text-center">
+            <div className="text-2xl mb-2 text-red-500">❌</div>
+            <div className="font-mono text-xs text-red-500 uppercase tracking-wider">INVALID VIDEO ID</div>
+            <div className="font-mono text-xs text-red-400 mt-1">{videoId || 'undefined'}</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Preferred source order: local cache → provided URL → YouTube fallback
+  const sources = [
+    `/thumbnails/${videoId}.jpg`,
+    thumbnailUrl || '',
+    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+  ].filter(Boolean) as string[];
+
+  const [srcIndex, setSrcIndex] = useState(0);
+  const activeSrc = sources[srcIndex];
+
   return (
     <div
       className={`relative cursor-pointer group ${className}`}
       onClick={onClick}
     >
-      <div className="relative aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300">
-        <Image
-          src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+      <div
+        key={activeSrc}
+        className="relative aspect-video bg-gray-100 border-2 border-black overflow-hidden transition-all duration-300 group-hover:shadow-lg"
+        style={{
+          backgroundImage: `url(${activeSrc})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Hidden img to trigger onError/onLoad for fallback chain */}
+        <img
+          src={activeSrc}
           alt={title}
-          width={480}
-          height={360}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          unoptimized
+          className="hidden"
+          onError={() => {
+            if (srcIndex < sources.length - 1) {
+              setSrcIndex((i) => i + 1);
+            }
+          }}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-          <div className="bg-white bg-opacity-90 backdrop-blur-sm p-4 rounded-full group-hover:bg-opacity-100 group-hover:scale-110 transition-all duration-300 shadow-xl">
-            <Play size={32} fill="currentColor" className="text-red-600 ml-1" />
+
+        {/* Brand-consistent overlay */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+          <div className="bg-white border-2 border-black p-3 opacity-0 group-hover:opacity-100 transform scale-75 group-hover:scale-100 transition-all duration-300">
+            <Play size={20} fill="currentColor" className="text-black ml-0.5" />
           </div>
         </div>
       </div>
-      <h4 className="font-display text-lg mt-3 group-hover:text-blue-600 transition-colors duration-300">
-        {title}
-      </h4>
     </div>
   );
 };
@@ -196,26 +234,28 @@ export const VideoLightbox: React.FC<VideoLightboxProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="lightbox-backdrop" onClick={onClose}>
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 backdrop-blur-sm flex items-center justify-center overflow-y-auto p-4" onClick={onClose}>
       <div
-        className="max-w-5xl w-full mx-4 my-8 relative lg:mx-8 xl:mx-auto"
+        className="max-w-5xl w-full relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Enhanced close button */}
         <button
           onClick={onClose}
-          className="absolute -top-12 right-0 bg-white bg-opacity-20 backdrop-blur-sm text-white p-3 rounded-full hover:bg-opacity-30 transition-all z-10 border border-white border-opacity-20 lg:-top-16 lg:-right-4"
+          className="absolute -top-12 right-0 bg-white text-black p-3 border-2 border-white hover:bg-black hover:text-white hover:border-white transition-all z-10 font-mono text-xs uppercase tracking-wider lg:-top-16 lg:-right-4"
           aria-label="Close video"
         >
-          <X size={24} />
+          <X size={20} />
         </button>
 
-        <YouTubePlayer
-          {...videoProps}
-          onClose={undefined} // Remove duplicate close button
-          autoplay={true}
-          className="w-full shadow-2xl"
-        />
+        <div className="border-4 border-white shadow-2xl">
+          <YouTubePlayer
+            {...videoProps}
+            onClose={undefined} // Remove duplicate close button
+            autoplay={true}
+            className="w-full"
+          />
+        </div>
       </div>
     </div>
   );

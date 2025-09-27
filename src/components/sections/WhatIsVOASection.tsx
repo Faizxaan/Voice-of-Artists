@@ -2,25 +2,28 @@
 
 import React, { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { SectionHeading, TapeOverlay } from "@/components/ui";
-import { Sparkles, Target, Heart, Users } from "lucide-react";
+import { SectionHeading } from "@/components/ui";
+import { Waves, Flame, Users, Target, Sparkles } from "lucide-react";
 
 export const WhatIsVOASection: React.FC = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [activeCard, setActiveCard] = useState<number | null>(null);
-  const [manifestoExpanded, setManifestoExpanded] = useState(false);
 
   return (
     <section
       id="about"
-      className="py-20 bg-gradient-to-br from-cyan-50 via-sky-100 to-blue-100 relative overflow-hidden"
+      className="py-20 bg-white relative overflow-hidden"
     >
-      {/* Animated Background Elements */}
+      {/* Minimal Background Elements - Black & White Foundation */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-cyan-200/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl animate-pulse delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-128 h-128 bg-sky-200/10 rounded-full blur-3xl animate-pulse delay-4000"></div>
+        {/* Subtle texture overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-50/30 to-transparent"></div>
+        
+        {/* Geometric elements representing movement */}
+        <div className="absolute top-20 right-20 w-px h-32 bg-black transform rotate-45"></div>
+        <div className="absolute bottom-32 left-16 w-px h-24 bg-black transform -rotate-12"></div>
+        <div className="absolute top-1/2 right-1/3 w-px h-16 bg-gray-300"></div>
       </div>
 
       <motion.div
@@ -35,171 +38,252 @@ export const WhatIsVOASection: React.FC = () => {
           animate={isInView ? { y: 0, opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <SectionHeading withTape className="mb-16">
-            What is VOA
+          <SectionHeading withTape={false} className="mb-16 text-black font-mono text-4xl uppercase tracking-wider">
+            what is VOA
           </SectionHeading>
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
-          {/* Interactive Mission Statement */}
+          {/* Section 1: What is VOA - Expanded Content */}
           <motion.div
-            className="mb-16 text-center"
+            className="mb-20"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={isInView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <motion.div
-              className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-cyan-200 shadow-xl max-w-4xl mx-auto relative group cursor-pointer"
+              className="bg-white border-2 border-black p-12 max-w-6xl mx-auto relative"
               whileHover={{
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                scale: 1.01,
               }}
-              onClick={() => setManifestoExpanded(!manifestoExpanded)}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <div className="absolute -top-4 left-8 bg-gradient-to-r from-lime-500 to-green-600 text-white px-6 py-2 rounded-full text-sm font-semibold">
-                Our Manifesto
-              </div>
-
               <motion.h3
-                className="font-display text-4xl mb-6 bg-gradient-to-r from-lime-600 to-green-700 bg-clip-text text-transparent"
-                animate={{ scale: manifestoExpanded ? 1.05 : 1 }}
-                transition={{ duration: 0.3 }}
+                className="font-mono text-4xl mb-8 text-black uppercase tracking-wider text-center"
+                initial={{ y: 20, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
               >
-                Art Above Chart
+                What is VOA?
               </motion.h3>
 
-              <AnimatePresence>
-                <motion.p
-                  className="text-lg mb-6 text-gray-700 leading-relaxed"
-                  initial={{ height: "auto" }}
-                  animate={{
-                    height: manifestoExpanded ? "auto" : "3rem",
-                    opacity: manifestoExpanded ? 1 : 0.8,
-                  }}
-                  transition={{ duration: 0.5 }}
-                  style={{ overflow: "hidden" }}
-                >
-                  Voice of Artist is an online platform for all artists to:
-                  explore their artist-self, inspire the art pursuit in others
-                  through their journeys, contribute towards building a positive
-                  culture in the society.
-                  {manifestoExpanded && (
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="block mt-4 text-cyan-600 font-medium"
-                    >
-                      We believe in the transformative power of authentic
-                      artistic expression.
-                    </motion.span>
-                  )}
-                </motion.p>
-              </AnimatePresence>
-
               <motion.div
-                className="text-2xl font-script italic text-cyan-600 flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.1 }}
+                className="text-left mb-12"
+                initial={{ y: 30, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
-                <Sparkles className="w-6 h-6" />
-                Art Above Chart
-                <Sparkles className="w-6 h-6" />
+                <p className="text-lg leading-relaxed text-gray-800 mb-6 font-mono">
+                  Voice of Artist is an online platform for all artists to:
+                </p>
+                <ul className="font-mono text-lg text-gray-800 space-y-3 ml-8">
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-black transform rotate-45 mt-3 mr-4 flex-shrink-0"></span>
+                    <span>explore their artist-self</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-black transform rotate-45 mt-3 mr-4 flex-shrink-0"></span>
+                    <span>inspire the art pursuit in others through their journeys</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="w-2 h-2 bg-black transform rotate-45 mt-3 mr-4 flex-shrink-0"></span>
+                    <span>contribute towards building a positive culture in the society</span>
+                  </li>
+                </ul>
               </motion.div>
 
-              <div className="absolute bottom-4 right-4 text-sm text-gray-400">
-                Click to {manifestoExpanded ? "collapse" : "expand"}
-              </div>
+              {/* Why is VOA Needed Section */}
+              <motion.div
+                className="border-t-2 border-black pt-12 mb-12"
+                initial={{ y: 40, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 1.0 }}
+              >
+                <h4 className="font-mono text-3xl mb-8 text-black uppercase tracking-wider text-center">
+                  Why is VOA Needed?
+                </h4>
+                
+                <div className="text-center mb-8">
+                  <div className="font-mono text-lg text-gray-800 leading-relaxed space-y-2">
+                    <p>To change the collective, the individual needs to change.</p>
+                    <p>To change an individual, their attitude needs to change.</p>
+                    <p>To change attitude, behavior needs to change.</p>
+                    <p>To change behavior, action needs to change.</p>
+                    <p>To change action, habits need to change.</p>
+                    <p>To change habits, the environment needs to change.</p>
+                    <p>To change the environment, opportunities need to change.</p>
+                  </div>
+                  
+                  <div className="mt-8 p-6 bg-black text-white">
+                    <p className="font-mono text-xl mb-4">After all, Transformation begins with opportunities.</p>
+                    <p className="font-mono text-lg mb-2">So why not create opportunities?</p>
+                    <p className="font-mono text-lg">Opportunities begin with alignment. So why not bring people together?</p>
+                  </div>
+                </div>
+
+                <div className="text-center bg-gray-100 p-8 border-2 border-black">
+                  <p className="font-mono text-2xl text-black mb-4 uppercase tracking-wider">
+                    Voice of Artist brings people together
+                  </p>
+                  <p className="font-mono text-lg text-gray-800 mb-6">
+                    who have the intent to keep art above chart
+                  </p>
+                  
+                  <div className="bg-white p-6 border-2 border-black mx-auto max-w-2xl">
+                    <p className="font-mono text-lg text-gray-800 leading-relaxed">
+                      The purpose to make art is not to top charts. The purpose to make art is to make art. 
+                      If you top charts in the process, of course we will celebrate it!
+                    </p>
+                    <p className="font-mono text-xl text-black mt-4 font-semibold">
+                      But the one who is an artist at heart keeps art above chart.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                className="flex justify-center items-center gap-6 text-black"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 1.4 }}
+              >
+                <div className="w-20 h-px bg-black"></div>
+                <div className="w-2 h-2 bg-black transform rotate-45"></div>
+                <div className="w-20 h-px bg-black"></div>
+              </motion.div>
+
+              {/* Art Above Chart Badge */}
+              <motion.div
+                className="mt-8 text-center"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 1.6 }}
+              >
+                <div className="border-2 border-black bg-white px-6 py-2 font-mono text-sm uppercase tracking-wider inline-block">
+                  #ART ABOVE CHART
+                </div>
+              </motion.div>
             </motion.div>
           </motion.div>
 
-          {/* Enhanced Vision Pillars */}
+
+
+          {/* Section 2: The VOA Vision - Four Pillars */}
           <motion.div
-            className="mb-16"
+            className="mb-20"
             initial={{ y: 100, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <h3 className="font-display text-5xl text-center mb-12 bg-gradient-to-r from-cyan-600 to-blue-700 bg-clip-text text-transparent">
-              Our Vision
-            </h3>
+            <motion.div 
+              className="text-center mb-16"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <div className="inline-block relative mb-8">
+                <h3 className="font-mono text-5xl text-black mb-4 uppercase tracking-wider">
+                  The VOA Vision
+                </h3>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-px bg-black"></div>
+              </div>
+              <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed font-mono mb-6">
+                To create a platform for appreciating artists and bringing to the world diverse #VoiceOfArtist who have
+              </p>
+            </motion.div>
+            
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  title: "Passion for Art",
+                  title: "A Passion for Art",
                   description:
-                    "Celebrating the pure love and dedication artists have for their craft",
-                  icon: Heart,
-                  color: "from-cyan-400 to-blue-500",
-                  bgColor: "bg-cyan-50",
+                    "Whether you are a full-time artist or you pursue art along with your any other responsibility (work, home, life) - a consistent and passionate pursuit of art is all we need.",
+                  icon: Flame,
+                  element: "fire",
                 },
                 {
-                  title: "Desire for Positive Change",
+                  title: "A Desire for Positive Change",
                   description:
-                    "Using art as a catalyst for meaningful transformation in society",
+                    "You have a belief that art can bring about a positive change and contribute towards your family, society, country, and the world!",
                   icon: Sparkles,
-                  color: "from-sky-400 to-cyan-600",
-                  bgColor: "bg-sky-50",
+                  element: "air",
                 },
                 {
                   title: "Commitment to Professionalism",
                   description:
-                    "Maintaining high standards and integrity in all artistic endeavors",
+                    "You have a holistic outlook towards art and people look up to you for your passion, commitment, discipline, and professional conduct.",
                   icon: Target,
-                  color: "from-blue-400 to-cyan-600",
-                  bgColor: "bg-blue-50",
+                  element: "earth",
                 },
                 {
-                  title: "Respect for Others' Voices",
+                  title: "Respect for others' Voices",
                   description:
-                    "Honoring the unique perspectives and stories of every artist",
+                    "You appreciate different perspectives and are willing to learn and grow in the process.",
                   icon: Users,
-                  color: "from-cyan-500 to-blue-600",
-                  bgColor: "bg-cyan-50",
+                  element: "water",
                 },
               ].map((pillar, index) => {
                 const IconComponent = pillar.icon;
                 return (
                   <motion.div
                     key={index}
-                    className={`${pillar.bgColor} p-6 rounded-2xl border border-gray-200 shadow-lg relative group cursor-pointer overflow-hidden`}
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={isInView ? { y: 0, opacity: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                    className="bg-white p-8 border-2 border-black relative group cursor-pointer overflow-hidden"
+                    initial={{ y: 80, opacity: 0, scale: 0.9 }}
+                    animate={isInView ? { y: 0, opacity: 1, scale: 1 } : {}}
+                    transition={{ 
+                      duration: 0.7, 
+                      delay: 1.0 + index * 0.15,
+                      type: "spring",
+                      stiffness: 100
+                    }}
                     whileHover={{
-                      scale: 1.05,
-                      y: -10,
-                      boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.25)",
+                      scale: 1.02,
+                      y: -5,
                     }}
                     onHoverStart={() => setActiveCard(index)}
                     onHoverEnd={() => setActiveCard(null)}
                   >
+                    {/* Subtle hover effect */}
                     <motion.div
-                      className={`absolute inset-0 bg-gradient-to-br ${pillar.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                      className="absolute inset-0 bg-gray-100 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
                       initial={false}
                       animate={{ opacity: activeCard === index ? 0.1 : 0 }}
                     />
 
                     <motion.div
                       className="relative z-10"
-                      animate={{ scale: activeCard === index ? 1.05 : 1 }}
+                      animate={{ 
+                        scale: activeCard === index ? 1.02 : 1,
+                      }}
                       transition={{ duration: 0.3 }}
                     >
                       <motion.div
-                        className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br ${pillar.color} flex items-center justify-center text-white shadow-lg`}
-                        whileHover={{ rotate: 360 }}
+                        className="w-16 h-16 mx-auto mb-6 border-2 border-black bg-white flex items-center justify-center text-black relative"
+                        whileHover={{ 
+                          scale: 1.1,
+                        }}
                         transition={{ duration: 0.6 }}
                       >
-                        <IconComponent size={28} />
+                        <IconComponent size={24} />
                       </motion.div>
 
-                      <h4 className="font-display text-xl mb-3 text-center text-gray-800">
+                      <motion.h4 
+                        className="font-mono text-xl mb-6 text-center text-black uppercase tracking-wide leading-tight"
+                        animate={{ 
+                          color: activeCard === index ? "#000000" : "#000000"
+                        }}
+                      >
                         {pillar.title}
-                      </h4>
+                      </motion.h4>
 
-                      <p className="text-sm text-center leading-relaxed text-gray-600">
+                      <motion.p 
+                        className="text-sm text-center leading-relaxed text-gray-700 font-mono"
+                        animate={{
+                          scale: activeCard === index ? 1.01 : 1
+                        }}
+                      >
                         {pillar.description}
-                      </p>
+                      </motion.p>
                     </motion.div>
                   </motion.div>
                 );
@@ -207,130 +291,95 @@ export const WhatIsVOASection: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Enhanced Transformation Message */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.0 }}
-          >
-            <TapeOverlay>
-              <motion.div
-                className="bg-gradient-to-r from-gray-900 to-black text-white p-8 rounded-2xl max-w-3xl mx-auto shadow-2xl"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              >
-                <h3 className="font-display text-4xl mb-6 text-white">
-                  Why VOA?
-                </h3>
-                <div className="space-y-4 font-mono text-lg">
-                  <motion.p
-                    initial={{ x: -50, opacity: 0 }}
-                    animate={isInView ? { x: 0, opacity: 1 } : {}}
-                    transition={{ delay: 1.2 }}
-                  >
-                    To change the collective, the individual needs to change...
-                  </motion.p>
-                  <motion.p
-                    initial={{ x: 50, opacity: 0 }}
-                    animate={isInView ? { x: 0, opacity: 1 } : {}}
-                    transition={{ delay: 1.4 }}
-                  >
-                    Transformation begins with opportunities...
-                  </motion.p>
-                  <motion.p
-                    initial={{ y: 50, opacity: 0 }}
-                    animate={isInView ? { y: 0, opacity: 1 } : {}}
-                    transition={{ delay: 1.6 }}
-                  >
-                    Every voice matters in the symphony of change.
-                  </motion.p>
-                </div>
-              </motion.div>
-            </TapeOverlay>
-          </motion.div>
 
-          {/* Enhanced Founder's Notes */}
+
+          {/* Section 3: Founder's Message - Clean Typography */}
           <motion.div
-            className="grid lg:grid-cols-2 gap-12 items-start"
+            className="max-w-4xl mx-auto"
             initial={{ y: 100, opacity: 0 }}
             animate={isInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.8 }}
+            transition={{ duration: 0.8, delay: 1.6 }}
           >
-            {/* Left - Founder's Quote */}
             <motion.div
-              className="bg-white/80 backdrop-blur-sm p-8 rounded-2xl border border-cyan-200 shadow-xl"
+              className="bg-white border-2 border-black p-12 relative overflow-hidden"
               whileHover={{
-                scale: 1.02,
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                scale: 1.01,
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center">
-                  <Users className="w-6 h-6 text-white" />
+              {/* Header */}
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-4 bg-black text-white px-8 py-3 mb-6 font-mono text-sm uppercase tracking-wider">
+                  FROM OUR FOUNDERS
                 </div>
-                <h4 className="font-display text-2xl text-gray-800">
-                  Founder&rsquo;s Note
-                </h4>
               </div>
 
-              <blockquote className="font-script text-lg italic mb-6 leading-relaxed text-gray-700">
-                &ldquo;Art has the power to transcend boundaries, heal wounds,
-                and inspire change. Through VOA, we&rsquo;re creating a space
-                where every artist&rsquo;s journey becomes a beacon of hope and
-                transformation for others. We believe that when artists share
-                their authentic selves, they give others permission to do the
-                same.&rdquo;
-              </blockquote>
+              {/* Quote - Minimalist Style */}
+              <motion.blockquote 
+                className="font-mono text-xl text-center leading-relaxed text-black mb-10 relative"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={isInView ? { scale: 1, opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 1.8 }}
+              >
+                <span className="text-4xl text-black absolute -top-2 -left-2">"</span>
+                <span className="relative z-10 block px-8">
+                  Art has the power to transcend boundaries, heal wounds, and inspire change. 
+                  Through VOA, we're creating a space where every artist's journey becomes 
+                  a beacon of hope and transformation for others. We believe that when artists share 
+                  their authentic selves, they give others permission to do the same.
+                </span>
+                <span className="text-4xl text-black absolute -bottom-6 -right-2">"</span>
+              </motion.blockquote>
 
-              <footer className="text-right border-t border-gray-200 pt-4">
-                <cite className="font-display text-lg text-cyan-600">
+              {/* Signature */}
+              <motion.footer 
+                className="text-center border-t-2 border-black pt-8"
+                initial={{ y: 20, opacity: 0 }}
+                animate={isInView ? { y: 0, opacity: 1 } : {}}
+                transition={{ duration: 0.6, delay: 2.0 }}
+              >
+                <cite className="font-mono text-lg text-black block mb-2 uppercase tracking-wider">
                   — Megha Das & Ranaksh Rana
                 </cite>
-                <p className="text-sm text-gray-500 mt-1">Founders, VOA</p>
-              </footer>
+                <p className="font-mono text-sm text-gray-600 uppercase tracking-wide">Founders, Voice of Artist</p>
+              </motion.footer>
+
+              {/* Decorative elements - minimal */}
+              <div className="absolute top-0 left-0 w-full h-px bg-black"></div>
+              <div className="absolute bottom-0 left-0 w-full h-px bg-black"></div>
+              <div className="absolute top-0 left-0 w-px h-full bg-black"></div>
+              <div className="absolute top-0 right-0 w-px h-full bg-black"></div>
             </motion.div>
 
-            {/* Right - Creator's Note */}
+            {/* Philosophy Statement */}
             <motion.div
-              className="lg:mt-12"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="mt-12 text-center"
+              initial={{ y: 50, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 2.2 }}
             >
-              <div className="bg-gradient-to-br from-cyan-50 to-blue-50 p-8 border-2 border-cyan-200 rounded-2xl shadow-xl">
-                <motion.h3
-                  className="font-display text-4xl text-center mb-6 bg-gradient-to-r from-cyan-600 to-blue-700 bg-clip-text text-transparent"
-                  animate={{ rotate: [-1, 1, -1] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                >
-                  Creator&rsquo;s Note
-                </motion.h3>
-
-                <div className="space-y-4 text-gray-700">
-                  <p>
-                    Every artist has a story. Every story has the power to
-                    change lives. VOA exists to amplify these stories and create
-                    ripples of positive change.
-                  </p>
-                  <p>
-                    Join us in this movement where art meets purpose, and
-                    individual voices collectively create a symphony of
-                    transformation.
-                  </p>
+              <div className="bg-black text-white p-8 relative">
+                <h4 className="font-mono text-2xl mb-4 uppercase tracking-wider">
+                  Platform by Artists of Artists for Artists
+                </h4>
+                <p className="font-mono text-lg leading-relaxed max-w-2xl mx-auto">
+                  "Our platform is black and white - like your clarity of purpose. Your art adds color to it."
+                </p>
+                
+                {/* Movement symbols */}
+                <div className="flex justify-center items-center mt-6 gap-4">
+                  <div className="w-6 h-px bg-white"></div>
+                  <Waves className="w-6 h-6 text-white" />
+                  <div className="w-6 h-px bg-white"></div>
+                  <Flame className="w-6 h-6 text-white" />
+                  <div className="w-6 h-px bg-white"></div>
+                  <Sparkles className="w-6 h-6 text-white" />
+                  <div className="w-6 h-px bg-white"></div>
                 </div>
-
-                <motion.div
-                  className="mt-6 flex justify-center"
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <div className="w-16 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
-                </motion.div>
+                
+                <p className="font-mono text-sm mt-4 uppercase tracking-wider">
+                  Fire → Water → Wave → Universal
+                </p>
               </div>
             </motion.div>
           </motion.div>

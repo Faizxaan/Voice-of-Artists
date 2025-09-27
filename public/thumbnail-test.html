@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .thumbnail {
+            width: 200px;
+            height: 120px;
+            object-fit: cover;
+            border: 2px solid black;
+            margin: 10px;
+        }
+        .success {
+            border-color: green;
+        }
+        .error {
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Voice of Artists - Thumbnail Test</h1>
+    <p>Testing local thumbnails from /thumbnails/ directory:</p>
+    
+    <h2>Test Images:</h2>
+    
+    <div>
+        <h3>Rick Roll (dQw4w9WgXcQ.jpg)</h3>
+        <img 
+            src="/thumbnails/dQw4w9WgXcQ.jpg" 
+            alt="Rick Roll" 
+            class="thumbnail"
+            onload="this.className += ' success'; console.log('✅ Rick Roll loaded')"
+            onerror="this.className += ' error'; console.error('❌ Rick Roll failed')"
+        />
+    </div>
+    
+    <div>
+        <h3>First YouTube Video (jNQXAC9IVRw.jpg)</h3>
+        <img 
+            src="/thumbnails/jNQXAC9IVRw.jpg" 
+            alt="Me at the zoo" 
+            class="thumbnail"
+            onload="this.className += ' success'; console.log('✅ First video loaded')"
+            onerror="this.className += ' error'; console.error('❌ First video failed')"
+        />
+    </div>
+    
+    <div>
+        <h3>Gangnam Style (9bZkp7q19f0.jpg)</h3>
+        <img 
+            src="/thumbnails/9bZkp7q19f0.jpg" 
+            alt="Gangnam Style" 
+            class="thumbnail"
+            onload="this.className += ' success'; console.log('✅ Gangnam Style loaded')"
+            onerror="this.className += ' error'; console.error('❌ Gangnam Style failed')"
+        />
+    </div>
+    
+    <div>
+        <h3>Sample API Video (CwmMs5GdtAM.jpg)</h3>
+        <img 
+            src="/thumbnails/CwmMs5GdtAM.jpg" 
+            alt="API Video" 
+            class="thumbnail"
+            onload="this.className += ' success'; console.log('✅ API video loaded')"
+            onerror="this.className += ' error'; console.error('❌ API video failed')"
+        />
+    </div>
+    
+    <script>
+        console.log('🚀 Thumbnail test page loaded');
+        console.log('📁 Attempting to load thumbnails from /thumbnails/ directory');
+        
+        // Test if we can access the thumbnails directory
+        setTimeout(() => {
+            console.log('⏰ Test completed after 2 seconds');
+        }, 2000);
+    </script>
+</body>
+</html>
