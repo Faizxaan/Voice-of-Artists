@@ -3,21 +3,11 @@
 import React, { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { Waves, Flame, Users, Sparkles } from "lucide-react";
 
-export const AboutUsVOASection: React.FC = () => {
+export const FromOurFoundersSection: React.FC = () => {
   const ref = useRef(null);
-  
-  // Individual refs for each section
-  const headerRef = useRef(null);
-  const aboutVOARef = useRef(null);
-  const visionRef = useRef(null);
   const foundersRef = useRef(null);
   
-  // Individual inView states for each section
-  const isHeaderInView = useInView(headerRef, { amount: 0.3, margin: "0px 0px -100px 0px" });
-  const isAboutVOAInView = useInView(aboutVOARef, { amount: 0.3, margin: "0px 0px -100px 0px" });
-  const isVisionInView = useInView(visionRef, { amount: 0.2, margin: "0px 0px -150px 0px" });
   const isFoundersInView = useInView(foundersRef, { amount: 0.2, margin: "0px 0px -150px 0px" });
   
   const { scrollYProgress } = useScroll({
@@ -25,13 +15,12 @@ export const AboutUsVOASection: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  // Parallax effects
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0.8]);
 
   return (
     <motion.section
-      id="about-us"
+      id="from-our-founders"
       ref={ref}
       className="py-12 bg-white relative overflow-hidden"
       style={{ opacity }}
@@ -45,427 +34,30 @@ export const AboutUsVOASection: React.FC = () => {
         <motion.div 
           className="absolute top-20 right-20 w-px bg-black transform rotate-45"
           initial={{ height: 0, opacity: 0 }}
-          animate={isHeaderInView ? { height: 128, opacity: 1 } : { height: 0, opacity: 0 }}
+          animate={isFoundersInView ? { height: 128, opacity: 1 } : { height: 0, opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
         <motion.div 
           className="absolute bottom-32 left-16 w-px bg-black transform -rotate-12"
           initial={{ height: 0, opacity: 0 }}
-          animate={isHeaderInView ? { height: 96, opacity: 1 } : { height: 0, opacity: 0 }}
+          animate={isFoundersInView ? { height: 96, opacity: 1 } : { height: 0, opacity: 0 }}
           transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
         />
         <motion.div 
           className="absolute top-1/2 right-1/3 w-px h-16 bg-gray-300"
           initial={{ scaleY: 0, opacity: 0 }}
-          animate={isHeaderInView ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
+          animate={isFoundersInView ? { scaleY: 1, opacity: 1 } : { scaleY: 0, opacity: 0 }}
           transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
         />
       </motion.div>
 
       <motion.div
-        ref={ref}
         className="container mx-auto px-6 lg:px-12 relative z-10"
-        style={{ opacity: 1 }} // Force visibility
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        {/* Enhanced Section Header with Reversible Scroll Animations */}
-        <motion.div
-          ref={headerRef}
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 100 }}
-          animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 1.0, ease: "easeOut" }}
-        >
-          <motion.div 
-            className="inline-block relative mb-8"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={isHeaderInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-            transition={{ duration: 1.2, delay: 0.3, ease: "backOut" }}
-          >
-            <motion.h2 
-              className="font-mono text-5xl md:text-6xl text-black uppercase tracking-wider"
-              initial={{ opacity: 0 }}
-              animate={isHeaderInView ? { opacity: 1 } : { opacity: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              {"ABOUT VOA".split("").map((letter, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: 0.7 + index * 0.05,
-                    ease: "easeOut" 
-                  }}
-                  className="inline-block"
-                >
-                  {letter === " " ? "\u00A0" : letter}
-                </motion.span>
-              ))}
-            </motion.h2>
-            <motion.div 
-              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-black"
-              initial={{ width: 0, height: 1 }}
-              animate={isHeaderInView ? { width: 96, height: 1 } : { width: 0, height: 1 }}
-              transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
-            />
-          </motion.div>
-          <motion.p 
-            className="font-mono text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 1.8, ease: "easeOut" }}
-          >
-            Voice Of Artist is more than a platform—it's a movement to make local talent global through authentic storytelling
-          </motion.p>
-        </motion.div>
-
         <div className="max-w-7xl mx-auto">
-          {/* Enhanced Main About Section */}
-          <motion.div
-            ref={aboutVOARef}
-            className="mb-12"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isAboutVOAInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-            transition={{ duration: 1.0, delay: 0.2, ease: "easeOut" }}
-          >
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              {/* Logo Side with 3D Effect */}
-              <motion.div 
-                className="text-center lg:text-left"
-                initial={{ opacity: 0, x: -100, rotateY: -20 }}
-                animate={isAboutVOAInView ? { opacity: 1, x: 0, rotateY: 0 } : { opacity: 0, x: -100, rotateY: -20 }}
-                transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-              >
-                <motion.div 
-                  className="bg-white border-2 border-black p-12 inline-block"
-                  whileHover={{ 
-                    scale: 1.05, 
-                    rotate: 2,
-                    boxShadow: "10px 10px 0px rgba(0,0,0,0.1)",
-                    transition: { duration: 0.3 }
-                  }}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={isAboutVOAInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-                  transition={{ duration: 1.0, delay: 0.6, ease: "backOut" }}
-                >
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={isAboutVOAInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-                    transition={{ duration: 0.8, delay: 0.9, ease: "backOut" }}
-                  >
-                    <Image
-                      src="/images/voa-logo-new.svg"
-                      alt="VOA Logo"
-                      width={280}
-                      height={100}
-                      className="mx-auto lg:mx-0"
-                    />
-                  </motion.div>
-                  <motion.div 
-                    className="mt-6 border-t-2 border-black pt-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isAboutVOAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                  >
-                    <motion.div 
-                      className="border-2 border-black bg-white px-4 py-2 inline-block"
-                      whileHover={{ 
-                        backgroundColor: "#000000", 
-                        color: "#ffffff",
-                        transition: { duration: 0.2 }
-                      }}
-                    >
-                      <span className="font-mono text-sm uppercase tracking-wider">
-                        #ART ABOVE CHART
-                      </span>
-                    </motion.div>
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-
-              {/* Content Side with Staggered Animations */}
-              <motion.div 
-                className="space-y-8"
-                initial={{ opacity: 0, x: 100 }}
-                animate={isAboutVOAInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
-                transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-              >
-                <motion.h3
-                  className="font-mono text-3xl text-black uppercase tracking-wider"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isAboutVOAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-                >
-                  What is VOA?
-                </motion.h3>
-
-                <motion.div
-                  className="text-left"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isAboutVOAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.8, delay: 1.0, ease: "easeOut" }}
-                >
-                  <motion.p 
-                    className="font-mono text-lg leading-relaxed text-gray-800 mb-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isAboutVOAInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                  >
-                    Voice of Artist is an online platform for all artists to:
-                  </motion.p>
-                  <ul className="font-mono text-lg text-gray-800 space-y-3 ml-6">
-                    {[
-                      "explore their artist-self",
-                      "inspire the art pursuit in others through their journeys", 
-                      "contribute towards building a positive culture in the society"
-                    ].map((item, index) => (
-                      <motion.li 
-                        key={index}
-                        className="flex items-start"
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={isAboutVOAInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
-                        transition={{ 
-                          duration: 0.8, 
-                          delay: 1.4 + index * 0.2, 
-                          ease: "easeOut" 
-                        }}
-                      >
-                        <motion.span 
-                          className="w-2 h-2 bg-black transform rotate-45 mt-3 mr-4 flex-shrink-0"
-                          initial={{ scale: 0, rotate: 0 }}
-                          animate={isAboutVOAInView ? { scale: 1, rotate: 45 } : { scale: 0, rotate: 0 }}
-                          transition={{ 
-                            duration: 0.5, 
-                            delay: 1.5 + index * 0.2,
-                            ease: "backOut" 
-                          }}
-                        />
-                        <span>{item}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-
-                <motion.div
-                  className="flex gap-4 items-center"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={isAboutVOAInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                  transition={{ duration: 0.8, delay: 2.3, ease: "backOut" }}
-                >
-                  <motion.div 
-                    className="bg-black"
-                    initial={{ width: 0, height: 1 }}
-                    animate={isAboutVOAInView ? { width: 48, height: 1 } : { width: 0, height: 1 }}
-                    transition={{ duration: 0.8, delay: 2.5 }}
-                  />
-                  <motion.div 
-                    className="w-2 h-2 bg-black transform rotate-45"
-                    initial={{ scale: 0, rotate: 0 }}
-                    animate={isAboutVOAInView ? { scale: 1, rotate: 45 } : { scale: 0, rotate: 0 }}
-                    transition={{ duration: 0.6, delay: 2.7, ease: "backOut" }}
-                  />
-                  <motion.div 
-                    className="bg-black"
-                    initial={{ width: 0, height: 1 }}
-                    animate={isAboutVOAInView ? { width: 48, height: 1 } : { width: 0, height: 1 }}
-                    transition={{ duration: 0.8, delay: 2.5 }}
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
-          </motion.div>
-
-
-
-          {/* Enhanced VOA Vision Grid with Box Rotation Animations */}
-          <motion.div
-            ref={visionRef}
-            className="mb-12"
-            initial={{ opacity: 0, y: 60 }}
-            animate={isVisionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
-            {/* Vision Header with Smooth Animation */}
-            <motion.div 
-              className="text-center mb-10"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isVisionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            >
-              <motion.h3 
-                className="font-mono text-4xl text-black mb-6 uppercase tracking-wider"
-                initial={{ opacity: 0 }}
-                animate={isVisionInView ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                {"THE VOA VISION".split("").map((letter, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isVisionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ 
-                      duration: 0.4, 
-                      delay: 0.6 + index * 0.03,
-                      ease: "easeOut" 
-                    }}
-                    className="inline-block"
-                  >
-                    {letter === " " ? "\u00A0" : letter}
-                  </motion.span>
-                ))}
-              </motion.h3>
-              <motion.p 
-                className="font-mono text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 15 }}
-                animate={isVisionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                transition={{ duration: 0.5, delay: 1.0 }}
-              >
-                To create a platform for appreciating artists and bringing to the world diverse #VoiceOfArtist who have
-              </motion.p>
-              <motion.div 
-                className="bg-black mx-auto"
-                initial={{ width: 0, height: 1 }}
-                animate={isVisionInView ? { width: 64, height: 1 } : { width: 0, height: 1 }}
-                transition={{ duration: 0.6, delay: 1.2, ease: "easeOut" }}
-              />
-            </motion.div>
-
-            {/* Enhanced Vision Cards Grid with Improved Spacing */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                {
-                  title: "A Passion for Art",
-                  description: "Whether you are a full-time artist or you pursue art along with your any other responsibility (work, home, life) - a consistent and passionate pursuit of art is all we need.",
-                  icon: Flame,
-                },
-                {
-                  title: "A Desire for Positive Change", 
-                  description: "You have a belief that art can bring about a positive change and contribute towards your family, society, country, and the world!",
-                  icon: Sparkles,
-                },
-                {
-                  title: "Commitment to Professionalism",
-                  description: "You have a holistic outlook towards art and people look up to you for your passion, commitment, discipline, and professional conduct.",
-                  icon: Users,
-                },
-                {
-                  title: "Respect for others' Voices",
-                  description: "You appreciate different perspectives and are willing to learn and grow in the process.",
-                  icon: Waves,
-                },
-              ].map((item, index) => {
-                const IconComponent = item.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    className="bg-white border-2 border-black p-6 relative group cursor-pointer min-h-[420px] flex flex-col overflow-hidden"
-                    initial={{ 
-                      opacity: 0, 
-                      rotateY: -90,
-                      scale: 0.8
-                    }}
-                    animate={isVisionInView ? { 
-                      opacity: 1, 
-                      rotateY: 0,
-                      scale: 1
-                    } : { 
-                      opacity: 0, 
-                      rotateY: -90,
-                      scale: 0.8
-                    }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: 1.4 + index * 0.15,
-                      ease: "backOut"
-                    }}
-                    whileHover={{ 
-                      y: -8, 
-                      scale: 1.03,
-                      borderColor: "#333333",
-                      boxShadow: "12px 12px 0px rgba(0,0,0,0.08)",
-                    }}
-                    whileHover={{ 
-                      y: -8, 
-                      scale: 1.03,
-                      borderColor: "#333333",
-                      boxShadow: "12px 12px 0px rgba(0,0,0,0.08)",
-                      backgroundColor: "#fafafa",
-                      transition: { duration: 0.4, ease: "easeOut" }
-                    }}
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    {/* Icon with Smooth Hover Animation */}
-                    <motion.div 
-                      className="w-16 h-16 mx-auto mb-6 border-2 border-black bg-white flex items-center justify-center relative group"
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={isVisionInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: 1.8 + index * 0.1,
-                        ease: "easeOut"
-                      }}
-                      whileHover={{
-                        scale: 1.1,
-                        backgroundColor: "#f8f8f8",
-                        borderColor: "#333333",
-                        transition: { duration: 0.4, ease: "easeOut" }
-                      }}
-                    >
-                      <motion.div
-                        className="relative z-10 text-black"
-                        whileHover={{
-                          scale: 1.2,
-                          color: "#333333",
-                          transition: { duration: 0.4, ease: "easeOut" }
-                        }}
-                      >
-                        <IconComponent size={24} />
-                      </motion.div>
-                    </motion.div>
-
-                    {/* Title with Better Spacing and Word Wrapping */}
-                    <motion.h4 
-                      className="font-mono text-base mb-4 text-center text-black uppercase tracking-wide leading-tight font-semibold break-words hyphens-auto"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={isVisionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                      transition={{ duration: 0.5, delay: 2.0 + index * 0.1 }}
-                    >
-                      {item.title}
-                    </motion.h4>
-
-                    {/* Description with Better Typography and Text Wrapping */}
-                    <motion.p 
-                      className="font-mono text-xs leading-relaxed text-gray-700 text-center break-words hyphens-auto flex-grow"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={isVisionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
-                      transition={{ duration: 0.5, delay: 2.1 + index * 0.1 }}
-                    >
-                      {item.description}
-                    </motion.p>
-
-                    {/* Refined Decorative Corner Elements */}
-                    <motion.div
-                      className="absolute top-3 right-3 w-1 h-1 bg-gray-400 rounded-full opacity-0 group-hover:opacity-100"
-                      initial={{ scale: 0 }}
-                      animate={isVisionInView ? { scale: 1 } : { scale: 0 }}
-                      transition={{ duration: 0.3, delay: 2.3 + index * 0.1 }}
-                    />
-                    <motion.div
-                      className="absolute bottom-3 left-3 w-1 h-1 bg-gray-400 rounded-full opacity-0 group-hover:opacity-100"
-                      initial={{ scale: 0 }}
-                      animate={isVisionInView ? { scale: 1 } : { scale: 0 }}
-                      transition={{ duration: 0.3, delay: 2.4 + index * 0.1 }}
-                    />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
           {/* Enhanced Founders Message with 3D Cards */}
           <motion.div
             ref={foundersRef}

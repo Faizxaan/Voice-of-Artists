@@ -52,9 +52,9 @@ export const Header: React.FC = () => {
   }, []); // Empty dependency array!
 
   const navItems = [
-    { name: "About", href: "#about" },
+    { name: "About", href: "#about-us" },
     { name: "Episodes", href: "#episodes" },
-    { name: "Promo Materials", href: "#promo-materials" },
+    { name: "Artists Around World", href: "#artists-around-the-world" },
   ];
 
   return (

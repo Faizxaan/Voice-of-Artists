@@ -1,7 +1,9 @@
 import { Header } from "@/components/sections/Header";
 import { HeroSectionNew } from "@/components/sections/HeroSectionNew";
-import { AboutUsVOASection } from "@/components/sections/AboutUsVOASection";
+import { AboutVOASection } from "@/components/sections/AboutVOASection";
 import { EpisodesHub } from "@/components/sections/EpisodesHub";
+import { FromOurFoundersSection } from "@/components/sections/FromOurFoundersSection";
+import { VOAVisionSection } from "@/components/sections/VOAVisionSection";
 import { ArtistsAroundTheWorld } from "@/components/sections/ArtistsAroundTheWorldNew";
 import { Footer } from "@/components/sections/Footer";
 import { StructuredData } from "@/components/ui/StructuredData";
@@ -21,8 +23,10 @@ export default function Home() {
 
       <main id="main-content" className="min-h-screen">
         <HeroSectionNew />
-        <AboutUsVOASection />
+        <AboutVOASection />
         <EpisodesHub />
+        <FromOurFoundersSection />
+        <VOAVisionSection />
         <ArtistsAroundTheWorld />
       </main>
 
