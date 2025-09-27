@@ -20,6 +20,18 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    rules: {
+      // Allow raw quotes/apostrophes in JSX text without forcing HTML entities
+      "react/no-unescaped-entities": "off",
+      // Do not block builds on explicit any usage; surface as warnings instead
+      "@typescript-eslint/no-explicit-any": "warn",
+      // Allow <img> usage (we use it for hidden preloaders and fallback chains); keep as warning
+      "@next/next/no-img-element": "warn",
+      // Allow require() in Node-only utility scripts
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ];
 
 export default eslintConfig;

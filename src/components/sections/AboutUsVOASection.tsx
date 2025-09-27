@@ -387,12 +387,6 @@ export const AboutUsVOASection: React.FC = () => {
                       scale: 1.03,
                       borderColor: "#333333",
                       boxShadow: "12px 12px 0px rgba(0,0,0,0.08)",
-                    }}
-                    whileHover={{ 
-                      y: -8, 
-                      scale: 1.03,
-                      borderColor: "#333333",
-                      boxShadow: "12px 12px 0px rgba(0,0,0,0.08)",
                       backgroundColor: "#fafafa",
                       transition: { duration: 0.4, ease: "easeOut" }
                     }}
