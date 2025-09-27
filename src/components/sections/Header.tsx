@@ -70,11 +70,12 @@ export const Header: React.FC = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/images/Voice of Artist Logo-2.png"
-              alt="Voice of Artist Logo"
-              width={200}
-              height={60}
-              className="h-12 w-auto filter grayscale"
+              src="/images/voa-logo-new.svg"
+              alt="VOA Logo"
+              width={180}
+              height={54}
+              className="h-12 w-auto"
+              priority
             />
           </Link>
 

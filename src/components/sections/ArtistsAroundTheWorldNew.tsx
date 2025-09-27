@@ -24,9 +24,10 @@ interface Artist {
 const ARTISTS: Artist[] = [
   { id: "de", country: "Germany", title: "German Artist Feature", flag: "🇩🇪", region: "Europe", x: 49, y: 33, videoId: "AaLkO_x1f_0" },
   { id: "ru", country: "Russia", title: "Russian Artist Spotlight", flag: "🇷🇺", region: "Europe/Asia", x: 65, y: 25, videoId: "cSgPr0_rfoM" },
-  { id: "us", country: "US / Dubai", title: "US/Dubai Artist Feature", flag: "🇺🇸", region: "North America", x: 21, y: 40, videoId: "uix1RXXbyME" },
+  { id: "us", country: "USA", title: "USA Artist Feature", flag: "🇺🇸", region: "North America", x: 21, y: 40, videoId: "uix1RXXbyME" },
+  { id: "ae", country: "Dubai", title: "Dubai Artist Feature", flag: "🇦🇪", region: "Asia", x: 62, y: 50, videoId: "uix1RXXbyME" },
   { id: "es", country: "Spain", title: "Spanish Artist Journey", flag: "🇪🇸", region: "Europe", x: 46, y: 43, videoId: "lelWbbCjS7s" },
-  { id: "pt", country: "Portugal", title: "Portuguese Artist Story", flag: "🇵🇹", region: "Europe", x: 44, y: 44, videoId: "lelWbbCjS7s" },
+  { id: "pt", country: "Portugal", title: "Portuguese Artist Story", flag: "🇵🇹", region: "Europe", x: 44, y: 44, videoId: "FzhRGM4auII" },
   { id: "in1", country: "India", title: "Indian Artist Feature #1", flag: "🇮🇳", region: "Asia", x: 73, y: 55, videoId: "VuX4AAnOQ0Q" },
   { id: "in2", country: "India", title: "Indian Artist Feature #2", flag: "🇮🇳", region: "Asia", x: 75, y: 58, videoId: "BPsA0rSZqhw" },
   { id: "la", country: "Laos", title: "Laotian Artist (Coming Soon)", flag: "🇱🇦", region: "Asia", x: 78, y: 53 },
@@ -115,7 +116,7 @@ export const ArtistsAroundTheWorld: React.FC = () => {
                 {/* Tooltip */}
                 <div className="absolute left-1/2 -translate-x-1/2 mt-2 whitespace-nowrap">
                   <div className="bg-white border-2 border-black px-3 py-1 font-mono text-xs uppercase tracking-wider">
-                    {a.country} • {a.title}
+                    {a.country}
                     {!a.videoId && <span className="ml-2 text-gray-500">(Coming Soon)</span>}
                   </div>
                 </div>

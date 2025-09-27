@@ -141,6 +141,98 @@ export const DEMO_CHANNELS = {
   voauniverse: 'UCYourVOAChannelIdHere'    // Replace with actual VOA channel
 };
 
+// Curated category overrides by YouTube video ID (11 chars)
+// These ensure correct categorization regardless of title/tags
+const CATEGORY_OVERRIDES: Record<string, import('@/types').CategoryType> = {
+  // Writers (full + shorts)
+  IbM9r21Uejc: 'Writers',
+  BPsA0rSZqhw: 'Writers',
+  ZElSHSq2Sg0: 'Writers',
+  g4egHJK53iQ: 'Writers',
+  'zK5efA-Qnxs': 'Writers',
+  A8o75XkEKcU: 'Writers',
+
+  // Curators → Storytellers
+  AaLkO_x1f_0: 'Storytellers',
+  yFltWfTfKfg: 'Storytellers',
+  cSgPr0_rfoM: 'Storytellers',
+  '7mLbrxz57Lg': 'Storytellers',
+  NfP2uemARjs: 'Storytellers',
+  CwmMs5GdtAM: 'Storytellers',
+  '7aqmAPJk4LE': 'Storytellers',
+  BPI_2hUxDdk: 'Storytellers',
+
+  // Actors → Storytellers
+  BOVYv0SAKgE: 'Storytellers',
+  '-p9nVdBmdAY': 'Storytellers',
+  'Cj1-5D5GdNk': 'Storytellers',
+  aluiGvpVwzA: 'Storytellers',
+  ppSGeRHvGEk: 'Storytellers',
+  qtV13Kn3hAM: 'Storytellers',
+  NVcDU76XuQA: 'Storytellers',
+  'z7CUYOtXUCU': 'Storytellers',
+
+  // Directors
+  xq9ldzGN7q0: 'Directors',
+  VuX4AAnOQ0Q: 'Directors',
+  J8v_RUc7NWw: 'Directors',
+  lO8PczIo9jg: 'Directors',
+  uix1RXXbyME: 'Directors',
+  lelWbbCjS7s: 'Directors',
+  '56kLUPN_oXU': 'Directors',
+  pg7berXFuV0: 'Directors',
+  XuvwybcizXw: 'Directors',
+  'xQ5nM1JNp-U': 'Directors',
+  yhqNprfYCrs: 'Directors',
+  '44T7gvWpCL4': 'Directors',
+  AaT0YcIfomA: 'Directors',
+  'k0W64RDT1VU': 'Directors',
+  Ab1IeuRbcxs: 'Directors',
+
+  // Designers
+  rlbHXIi74mc: 'Designers',
+  'GESK-djAQHY': 'Designers',
+  '2FxuPe4BZvc': 'Designers',
+  _Wi_D3jUrqg: 'Designers',
+  dX0FyLkdPss: 'Designers',
+
+  // Painter
+  RdYh_JEVD7c: 'Painters',
+
+  // Glimpses (group promos) → Storytellers
+  '0o3zn4WsjTw': 'Storytellers',
+  qWKgwxtbAwo: 'Storytellers',
+  ZRQAIoZ8lJs: 'Storytellers',
+  '0MHnZEBEbXo': 'Storytellers',
+  'fox-RAfNjUE': 'Storytellers',
+  'aUNj_KhqlxI': 'Storytellers',
+  jXeUjPKQW_s: 'Storytellers',
+  DnExq_M6gu8: 'Storytellers',
+
+  // Classical Dancers → Storytellers
+  W0HqckkVNx0: 'Storytellers',
+  '70MCwRfIyqQ': 'Storytellers',
+  KVOGFjpv3OY: 'Storytellers',
+  tkVoLeCEvP0: 'Storytellers',
+  nn5jim6e1bE: 'Storytellers',
+
+  // Cinematographers → Filmmakers
+  '0fqhWkeaTWg': 'Filmmakers',
+  '4-gS7LDWW0Y': 'Filmmakers',
+  svBLVafaZwk: 'Filmmakers',
+  bS5d67lePSw: 'Filmmakers',
+
+  // Musicians
+  FzhRGM4auII: 'Musicians',
+  l198eDIe0Jg: 'Musicians',
+
+  // VOA Launch → Storytellers
+  wP2cv9xcRwo: 'Storytellers',
+  HvPZnaTPZbQ: 'Storytellers',
+  '7rL31XK3sWo': 'Storytellers',
+  'i-buXDCrjsI': 'Storytellers',
+};
+
 /**
  * YouTube Data API Service Class
  * Implements the recommended flow: channels.list → playlistItems.list → videos.list
@@ -344,31 +436,38 @@ export function convertYouTubeToEpisode(video: YouTubeVideo, index: number): imp
   const tags = video.snippet.tags || [];
   
   let category: import('@/types').CategoryType = 'Storytellers';
-  
-  // Smart category detection
-  if (title.includes('paint') || title.includes('color') || title.includes('canvas') || 
-      tags.some(tag => ['paint', 'painting', 'artist', 'canvas'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-    category = 'Painters';
-  } else if (title.includes('music') || title.includes('rhythm') || title.includes('sound') || title.includes('song') ||
-             tags.some(tag => ['music', 'musician', 'song', 'audio'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-    category = 'Musicians';
-  } else if (title.includes('film') || title.includes('director') || title.includes('cinema') || title.includes('movie') ||
-             tags.some(tag => ['film', 'movie', 'cinema', 'director'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-    category = 'Directors';
-  } else if (title.includes('photo') || title.includes('lens') || title.includes('camera') || title.includes('photograph') ||
-             tags.some(tag => ['photo', 'photography', 'camera'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-    category = 'Photographers';
-  } else if (title.includes('write') || title.includes('poet') || title.includes('word') || title.includes('story') ||
-             tags.some(tag => ['writing', 'writer', 'poet', 'poetry'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-    category = 'Writers';
-  } else if (title.includes('design') || title.includes('visual') || title.includes('graphic') ||
-             tags.some(tag => ['design', 'designer', 'graphic'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-    category = 'Designers';
-  } else if (title.includes('filmmaker') || title.includes('documentary') ||
-             tags.some(tag => ['filmmaker', 'documentary'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-    category = 'Filmmakers';
-  }
 
+  // Curated override first
+  if (CATEGORY_OVERRIDES[video.id]) {
+    category = CATEGORY_OVERRIDES[video.id];
+  } else {
+    // Smart category detection
+    if (title.includes('paint') || title.includes('color') || title.includes('canvas') || 
+        tags.some(tag => ['paint', 'painting', 'artist', 'canvas'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+      category = 'Painters';
+    } else if (title.includes('music') || title.includes('rhythm') || title.includes('sound') || title.includes('song') ||
+               tags.some(tag => ['music', 'musician', 'song', 'audio'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+      category = 'Musicians';
+    } else if (title.includes('film') || title.includes('director') || title.includes('cinema') || title.includes('movie') ||
+               tags.some(tag => ['film', 'movie', 'cinema', 'director'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+      category = 'Directors';
+    } else if (title.includes('photo') || title.includes('lens') || title.includes('camera') || title.includes('photograph') ||
+               tags.some(tag => ['photo', 'photography', 'camera'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+      category = 'Photographers';
+    } else if (title.includes('write') || title.includes('poet') || title.includes('word') || title.includes('story') ||
+               tags.some(tag => ['writing', 'writer', 'poet', 'poetry'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+      category = 'Writers';
+    } else if (title.includes('design') || title.includes('visual') || title.includes('graphic') ||
+               tags.some(tag => ['design', 'designer', 'graphic'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+      category = 'Designers';
+    } else if (title.includes('filmmaker') || title.includes('documentary') ||
+               tags.some(tag => ['filmmaker', 'documentary'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+      category = 'Filmmakers';
+    }
+  }
+  
+  // end override/detection block
+  
   // Extract meaningful tags from title, description, and YouTube tags
   const extractedTags: string[] = [];
   const content = `${video.snippet.title} ${video.snippet.description}`.toLowerCase();
