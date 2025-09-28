@@ -149,7 +149,7 @@ export const AboutVOASection: React.FC = () => {
                     transition={{ duration: 0.8, delay: 0.9, ease: "backOut" }}
                   >
                     <Image
-                      src="/images/voa-logo-4.svg"
+                      src="/images/Voice of Artist Logo-4.png"
                       alt="VOA Logo"
                       width={280}
                       height={100}

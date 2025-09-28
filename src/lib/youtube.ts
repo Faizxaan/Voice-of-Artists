@@ -442,28 +442,41 @@ export function convertYouTubeToEpisode(video: YouTubeVideo, index: number): imp
     category = CATEGORY_OVERRIDES[video.id];
   } else {
     // Smart category detection
-    if (title.includes('paint') || title.includes('color') || title.includes('canvas') || 
-        tags.some(tag => ['paint', 'painting', 'artist', 'canvas'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-      category = 'Painters';
-    } else if (title.includes('music') || title.includes('rhythm') || title.includes('sound') || title.includes('song') ||
-               tags.some(tag => ['music', 'musician', 'song', 'audio'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-      category = 'Musicians';
-    } else if (title.includes('film') || title.includes('director') || title.includes('cinema') || title.includes('movie') ||
-               tags.some(tag => ['film', 'movie', 'cinema', 'director'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-      category = 'Directors';
-    } else if (title.includes('photo') || title.includes('lens') || title.includes('camera') || title.includes('photograph') ||
-               tags.some(tag => ['photo', 'photography', 'camera'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-      category = 'Photographers';
-    } else if (title.includes('write') || title.includes('poet') || title.includes('word') || title.includes('story') ||
-               tags.some(tag => ['writing', 'writer', 'poet', 'poetry'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-      category = 'Writers';
-    } else if (title.includes('design') || title.includes('visual') || title.includes('graphic') ||
-               tags.some(tag => ['design', 'designer', 'graphic'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-      category = 'Designers';
-    } else if (title.includes('filmmaker') || title.includes('documentary') ||
-               tags.some(tag => ['filmmaker', 'documentary'].some(keyword => tag.toLowerCase().includes(keyword)))) {
-      category = 'Filmmakers';
-    }
+  // Smart category detection
+  if (title.includes('paint') || title.includes('color') || title.includes('canvas') || 
+      tags.some(tag => ['paint', 'painting', 'artist', 'canvas'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Painters';
+  } else if (title.includes('music') || title.includes('rhythm') || title.includes('sound') || title.includes('song') ||
+             tags.some(tag => ['music', 'musician', 'song', 'audio'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Musicians';
+  } else if (title.includes('film') || title.includes('director') || title.includes('cinema') || title.includes('movie') ||
+             tags.some(tag => ['film', 'movie', 'cinema', 'director'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Directors';
+  } else if (title.includes('photo') || title.includes('lens') || title.includes('camera') || title.includes('photograph') ||
+             tags.some(tag => ['photo', 'photography', 'camera'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Photographers';
+  } else if (title.includes('write') || title.includes('poet') || title.includes('word') || title.includes('story') ||
+             tags.some(tag => ['writing', 'writer', 'poet', 'poetry'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Writers';
+  } else if (title.includes('design') || title.includes('visual') || title.includes('graphic') ||
+             tags.some(tag => ['design', 'designer', 'graphic'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Designers';
+  } else if (title.includes('filmmaker') || title.includes('documentary') ||
+             tags.some(tag => ['filmmaker', 'documentary'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Filmmakers';
+  } else if (title.includes('curator') || title.includes('curation') || title.includes('exhibition') ||
+             tags.some(tag => ['curator', 'curation', 'exhibition'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Curators';
+  } else if (title.includes('actor') || title.includes('acting') || title.includes('performance') || title.includes('theater') ||
+             tags.some(tag => ['actor', 'acting', 'performance', 'theater'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Actors';
+  } else if (title.includes('dance') || title.includes('dancer') || title.includes('choreography') || title.includes('ballet') ||
+             tags.some(tag => ['dance', 'dancer', 'choreography', 'ballet', 'classical'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Dancers';
+  } else if (title.includes('cinematographer') || title.includes('cinematography') || title.includes('camera work') ||
+             tags.some(tag => ['cinematographer', 'cinematography', 'camera work'].some(keyword => tag.toLowerCase().includes(keyword)))) {
+    category = 'Cinematographers';
+  }
   }
   
   // end override/detection block
@@ -568,107 +581,256 @@ export function convertYouTubeToEpisode(video: YouTubeVideo, index: number): imp
  * Fallback episodes data for development/demo
  */
 export const fallbackEpisodes: import('@/types').Episode[] = [
+  // Writers Full Episodes
   {
-    id: "fallback-1",
-    title: "Voice of Artist - Finding Your Creative Voice | Episode 1",
-    slug: "voice-of-artist-finding-your-creative-voice-episode-1",
-    excerpt: "Welcome to Voice of Artist! In our inaugural episode, we dive deep into what it means to find your unique creative voice as an artist.",
-    youtube_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ", // Rick Roll - reliable test video
-    thumbnail_url: "/thumbnails/dQw4w9WgXcQ.jpg", // Local thumbnail
-    category: "Storytellers",
-    tags: ["creative", "voice", "journey", "art", "authentic"],
+    id: "writers-1",
+    title: "Writer's Creative Journey - Expressing Through Words",
+    slug: "writer-creative-journey-expressing-through-words",
+    excerpt: "Discover the power of written expression with a talented writer who transforms personal experiences into universal stories.",
+    youtube_url: "https://youtu.be/IbM9r21Uejc",
+    thumbnail_url: "/thumbnails/IbM9r21Uejc.jpg",
+    category: "Writers",
+    tags: ["writing", "creativity", "storytelling", "expression", "journey"],
     published_at: "2024-09-15",
     featured: true,
     assets: []
   },
   {
-    id: "fallback-2", 
-    title: "The Art of Storytelling - Independent Filmmaker's Journey",
-    slug: "the-art-of-storytelling-independent-filmmakers-journey",
-    excerpt: "Exploring narrative techniques and visual storytelling with independent filmmaker Sarah Chen, who quit her corporate job to pursue authentic storytelling.",
-    youtube_url: "https://www.youtube.com/watch?v=jNQXAC9IVRw", // Me at the zoo - first YouTube video
-    thumbnail_url: "/thumbnails/jNQXAC9IVRw.jpg", // Local thumbnail
-    category: "Filmmakers",
-    tags: ["storytelling", "filmmaker", "indie", "narrative", "visual"],
-    published_at: "2024-09-08",
+    id: "writers-2",
+    title: "The Art of Storytelling - Writer's Perspective",
+    slug: "art-of-storytelling-writers-perspective",
+    excerpt: "Explore narrative techniques and creative writing processes with an accomplished storyteller.",
+    youtube_url: "https://youtu.be/BPsA0rSZqhw",
+    thumbnail_url: "/thumbnails/BPsA0rSZqhw.jpg",
+    category: "Writers",
+    tags: ["storytelling", "narrative", "writing", "creative-process", "craft"],
+    published_at: "2024-09-10",
     featured: true,
     assets: []
   },
   {
-    id: "fallback-3",
-    title: "Colors of Expression - Abstract Painter's Creative Process",
-    slug: "colors-of-expression-abstract-painters-creative-process",
-    excerpt: "Join abstract painter Marcus Rivera in his studio as he shares his unique approach to color and form.",
-    youtube_url: "https://www.youtube.com/watch?v=9bZkp7q19f0", // Gangnam Style - reliable test video
-    thumbnail_url: "/thumbnails/9bZkp7q19f0.jpg", // Local thumbnail
-    category: "Painters",
-    tags: ["painting", "abstract", "color", "expression", "studio"],
-    published_at: "2024-09-01",
+    id: "writers-3",
+    title: "Literary Voice - Modern Writing Techniques",
+    slug: "literary-voice-modern-writing-techniques",
+    excerpt: "A contemporary writer shares insights into developing a unique literary voice and modern storytelling approaches.",
+    youtube_url: "https://youtu.be/ZElSHSq2Sg0",
+    thumbnail_url: "/thumbnails/ZElSHSq2Sg0.jpg",
+    category: "Writers",
+    tags: ["literary", "modern", "techniques", "voice", "contemporary"],
+    published_at: "2024-09-05",
+    featured: false,
+    assets: []
+  },
+
+  // Curators
+  {
+    id: "curators-1", 
+    title: "Curator's Vision - Bringing Art to Life",
+    slug: "curators-vision-bringing-art-to-life",
+    excerpt: "Meet a passionate curator who bridges the gap between artists and audiences, creating meaningful cultural experiences.",
+    youtube_url: "https://youtu.be/AaLkO_x1f_0",
+    thumbnail_url: "/thumbnails/AaLkO_x1f_0.jpg",
+    category: "Curators",
+    tags: ["curation", "art", "cultural", "exhibition", "vision"],
+    published_at: "2024-08-30",
     featured: true,
     assets: []
   },
   {
-    id: "fallback-4",
-    title: "Rhythm and Soul - Musicians Breaking Genre Boundaries",
-    slug: "rhythm-and-soul-musicians-breaking-genre-boundaries",
-    excerpt: "Meet indie musician Elena Rodriguez, who blends classical training with experimental electronic sounds to create something entirely unique.",
-    youtube_url: "https://www.youtube.com/watch?v=kJQP7kiw5Fk", // Despacito - popular video
-    thumbnail_url: "/thumbnails/kJQP7kiw5Fk.jpg", // Local thumbnail
-    category: "Musicians",
-    tags: ["music", "indie", "electronic", "experimental", "genre"],
+    id: "curators-2",
+    title: "Dance and Curation - Movement in Art",
+    slug: "dance-and-curation-movement-in-art", 
+    excerpt: "A curator-dancer explores the intersection of movement and curatorial practice in contemporary art spaces.",
+    youtube_url: "https://youtu.be/yFltWfTfKfg",
+    thumbnail_url: "/thumbnails/yFltWfTfKfg.jpg",
+    category: "Curators",
+    tags: ["dance", "curation", "movement", "contemporary", "art-spaces"],
     published_at: "2024-08-25",
     featured: false,
     assets: []
   },
+
+  // Actors
   {
-    id: "fallback-5",
-    title: "Written Words, Spoken Truths - Poetry as Social Commentary",
-    slug: "written-words-spoken-truths-poetry-as-social-commentary",
-    excerpt: "Spoken word poet and author James Thompson discusses how he uses poetry as a tool for social change and personal healing.",
-    youtube_url: "https://www.youtube.com/watch?v=L_jWHffIx5E", // Smosh - reliable test video
-    thumbnail_url: "/thumbnails/L_jWHffIx5E.jpg", // Local thumbnail
-    category: "Writers",
-    tags: ["poetry", "social", "spoken-word", "change", "healing"],
-    published_at: "2024-08-18",
-    featured: false,
+    id: "actors-1",
+    title: "Actor's Craft - Bringing Characters to Life",
+    slug: "actors-craft-bringing-characters-to-life",
+    excerpt: "Dive into the world of acting with a seasoned performer who shares the art of character development and emotional truth.",
+    youtube_url: "https://youtu.be/BOVYv0SAKgE",
+    thumbnail_url: "/thumbnails/BOVYv0SAKgE.jpg",
+    category: "Actors",
+    tags: ["acting", "character", "performance", "craft", "theater"],
+    published_at: "2024-08-20",
+    featured: true,
     assets: []
   },
   {
-    id: "fallback-6",
-    title: "Digital Canvas - Modern Photography Perspectives",
-    slug: "digital-canvas-modern-photography-perspectives",
-    excerpt: "Documentary photographer Lisa Chang shares her journey from street photography to international exhibitions and social impact projects.",
-    youtube_url: "https://www.youtube.com/watch?v=0fqhWkeaTWg", 
-    thumbnail_url: "/thumbnails/0fqhWkeaTWg.jpg", // Local thumbnail
-    category: "Photographers",
-    tags: ["photography", "documentary", "street", "exhibition"],
-    published_at: "2024-08-11",
+    id: "actors-2",
+    title: "Performance Art - Actor's Journey",
+    slug: "performance-art-actors-journey",
+    excerpt: "An accomplished actor discusses the journey from training to professional performance and the dedication required.",
+    youtube_url: "https://youtu.be/-p9nVdBmdAY",
+    thumbnail_url: "/thumbnails/-p9nVdBmdAY.jpg",
+    category: "Actors",
+    tags: ["performance", "journey", "training", "dedication", "professional"],
+    published_at: "2024-08-15",
     featured: false,
     assets: []
   },
+
+  // Directors
   {
-    id: "fallback-7",
-    title: "Form and Function - Designer's Aesthetic Philosophy",
-    slug: "form-and-function-designers-aesthetic-philosophy",
-    excerpt: "Interior designer Michael Torres explains how he creates spaces that tell stories while maintaining functionality and emotional resonance.",
-    youtube_url: "https://www.youtube.com/watch?v=0MHnZEBEbXo",
-    thumbnail_url: "/thumbnails/0MHnZEBEbXo.jpg", // Local thumbnail
+    id: "directors-1",
+    title: "Director's Vision - Cinematic Storytelling",
+    slug: "directors-vision-cinematic-storytelling",
+    excerpt: "Explore the creative process behind filmmaking with a visionary director who brings stories to life on screen.",
+    youtube_url: "https://youtu.be/xq9ldzGN7q0",
+    thumbnail_url: "/thumbnails/xq9ldzGN7q0.jpg",
+    category: "Directors",
+    tags: ["directing", "cinema", "storytelling", "filmmaking", "vision"],
+    published_at: "2024-08-10",
+    featured: true,
+    assets: []
+  },
+  {
+    id: "directors-2",
+    title: "Film Direction - Creative Leadership",
+    slug: "film-direction-creative-leadership",
+    excerpt: "A multi-talented director-actor shares insights into leading creative teams and bringing cinematic visions to reality.",
+    youtube_url: "https://youtu.be/VuX4AAnOQ0Q",
+    thumbnail_url: "/thumbnails/VuX4AAnOQ0Q.jpg",
+    category: "Directors",
+    tags: ["direction", "leadership", "creative-teams", "cinema", "collaboration"],
+    published_at: "2024-08-05",
+    featured: false,
+    assets: []
+  },
+
+  // Designers
+  {
+    id: "designers-1",
+    title: "Design Philosophy - Form Meets Function",
+    slug: "design-philosophy-form-meets-function",
+    excerpt: "A talented designer explores the balance between aesthetic beauty and practical functionality in contemporary design.",
+    youtube_url: "https://youtu.be/rlbHXIi74mc",
+    thumbnail_url: "/thumbnails/rlbHXIi74mc.jpg",
     category: "Designers",
-    tags: ["design", "interior", "aesthetic", "functionality"],
-    published_at: "2024-08-04",
+    tags: ["design", "philosophy", "function", "aesthetic", "contemporary"],
+    published_at: "2024-07-30",
     featured: false,
     assets: []
   },
   {
-    id: "fallback-8",
-    title: "Movement and Meaning - Contemporary Dance Expression",
-    slug: "movement-and-meaning-contemporary-dance-expression",
-    excerpt: "Choreographer and dancer Ana Gutierrez discusses how movement becomes a universal language that transcends cultural boundaries.",
-    youtube_url: "https://www.youtube.com/watch?v=2FxuPe4BZvc",
-    thumbnail_url: "/thumbnails/2FxuPe4BZvc.jpg", // Local thumbnail
+    id: "designers-2",
+    title: "Creative Design Process - Innovation in Action",
+    slug: "creative-design-process-innovation-in-action",
+    excerpt: "Discover innovative design approaches and creative problem-solving techniques with a forward-thinking designer.",
+    youtube_url: "https://youtu.be/GESK-djAQHY",
+    thumbnail_url: "/thumbnails/GESK-djAQHY.jpg",
+    category: "Designers",
+    tags: ["innovation", "design-process", "problem-solving", "creativity", "techniques"],
+    published_at: "2024-07-25",
+    featured: false,
+    assets: []
+  },
+
+  // Painters
+  {
+    id: "painters-1",
+    title: "Painter's Expression - Color and Emotion",
+    slug: "painters-expression-color-and-emotion",
+    excerpt: "Enter the vibrant world of painting where color becomes emotion and canvas transforms into windows of the soul.",
+    youtube_url: "https://youtu.be/RdYh_JEVD7c",
+    thumbnail_url: "/thumbnails/RdYh_JEVD7c.jpg",
+    category: "Painters",
+    tags: ["painting", "color", "emotion", "expression", "canvas"],
+    published_at: "2024-07-20",
+    featured: true,
+    assets: []
+  },
+
+  // Classical Dancers
+  {
+    id: "dancers-1",
+    title: "Classical Dance - Tradition in Motion",
+    slug: "classical-dance-tradition-in-motion",
+    excerpt: "Experience the grace and discipline of classical dance with a master performer who embodies centuries of tradition.",
+    youtube_url: "https://youtu.be/W0HqckkVNx0",
+    thumbnail_url: "/thumbnails/W0HqckkVNx0.jpg",
+    category: "Dancers",
+    tags: ["classical", "dance", "tradition", "grace", "discipline"],
+    published_at: "2024-07-15",
+    featured: false,
+    assets: []
+  },
+  {
+    id: "dancers-2",
+    title: "Dance Heritage - Cultural Movement",
+    slug: "dance-heritage-cultural-movement", 
+    excerpt: "A classical dancer shares the rich cultural heritage and spiritual dimensions of traditional dance forms.",
+    youtube_url: "https://youtu.be/70MCwRfIyqQ",
+    thumbnail_url: "/thumbnails/70MCwRfIyqQ.jpg",
+    category: "Dancers",
+    tags: ["heritage", "cultural", "traditional", "spiritual", "forms"],
+    published_at: "2024-07-10",
+    featured: false,
+    assets: []
+  },
+
+  // Cinematographers
+  {
+    id: "cinematographers-1",
+    title: "Cinematography - Visual Storytelling",
+    slug: "cinematography-visual-storytelling",
+    excerpt: "Explore the art of visual storytelling through the lens of a skilled cinematographer who paints with light.",
+    youtube_url: "https://youtu.be/0fqhWkeaTWg",
+    thumbnail_url: "/thumbnails/0fqhWkeaTWg.jpg",
+    category: "Cinematographers",
+    tags: ["cinematography", "visual", "storytelling", "light", "camera"],
+    published_at: "2024-07-05",
+    featured: false,
+    assets: []
+  },
+
+  // Musicians
+  {
+    id: "musicians-1",
+    title: "Musical Journey - Portugal's Artistic Voice",
+    slug: "musical-journey-portugal-artistic-voice",
+    excerpt: "Discover the musical heritage and contemporary sounds of Portugal through the voice of a talented musician.",
+    youtube_url: "https://youtu.be/FzhRGM4auII",
+    thumbnail_url: "/thumbnails/FzhRGM4auII.jpg",
+    category: "Musicians",
+    tags: ["music", "portugal", "heritage", "contemporary", "sounds"],
+    published_at: "2024-06-30",
+    featured: true,
+    assets: []
+  },
+
+  // VOA Launch/Glimpses Videos
+  {
+    id: "voa-launch-1",
+    title: "Voice of Artist - Platform Launch",
+    slug: "voice-of-artist-platform-launch",
+    excerpt: "The official launch of Voice of Artist - a platform by artists, of artists, for artists. Art Above Chart.",
+    youtube_url: "https://youtu.be/i-buXDCrjsI",
+    thumbnail_url: "/thumbnails/i-buXDCrjsI.jpg",
     category: "Storytellers",
-    tags: ["dance", "movement", "choreography", "expression"],
-    published_at: "2024-07-28",
+    tags: ["launch", "platform", "voa", "art-above-chart", "community"],
+    published_at: "2024-06-25",
+    featured: true,
+    assets: []
+  },
+  {
+    id: "voa-glimpse-1",
+    title: "Glimpses of VOA - Artist Community",
+    slug: "glimpses-of-voa-artist-community",
+    excerpt: "A glimpse into the diverse community of artists that make up the Voice of Artist ecosystem.",
+    youtube_url: "https://youtu.be/0o3zn4WsjTw",
+    thumbnail_url: "/thumbnails/0o3zn4WsjTw.jpg",
+    category: "Storytellers",
+    tags: ["glimpses", "community", "diverse", "ecosystem", "artists"],
+    published_at: "2024-06-20",
     featured: false,
     assets: []
   }

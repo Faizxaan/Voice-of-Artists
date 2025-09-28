@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
           <div className="text-center md:text-left">
             <div className="mb-6">
               <Image
-                src="/images/voa-logo-3.svg"
+                src="/images/Voice of Artist Logo-2.png"
                 alt="VOA Logo"
                 width={200}
                 height={60}
