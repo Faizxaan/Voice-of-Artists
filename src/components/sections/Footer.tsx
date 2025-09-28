@@ -43,11 +43,12 @@ export const Footer: React.FC = () => {
           <div className="text-center md:text-left">
             <div className="mb-6">
               <Image
-                src="/images/voa-logo-new.svg"
+                src="/images/Voice of Artist Logo-2.png"
                 alt="VOA Logo"
                 width={200}
                 height={60}
-                className="h-16 w-auto mx-auto md:mx-0 filter invert"
+                className="h-16 w-auto mx-auto md:mx-0"
+                priority
               />
             </div>
             <div className="inline-block border border-white bg-black px-4 py-2 mb-6">

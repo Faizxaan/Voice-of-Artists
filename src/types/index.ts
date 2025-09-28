@@ -65,4 +65,8 @@ export type CategoryType =
   | "Filmmakers"
   | "Designers"
   | "Photographers"
-  | "Storytellers";
+  | "Storytellers"
+  | "Curators"
+  | "Actors"
+  | "Dancers"
+  | "Cinematographers";

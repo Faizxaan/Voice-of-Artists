@@ -22,6 +22,10 @@ const categories: CategoryType[] = [
   "Designers",
   "Photographers",
   "Storytellers",
+  "Curators",
+  "Actors",
+  "Dancers",
+  "Cinematographers",
 ];
 
 export const EpisodesHub: React.FC<EpisodesHubProps> = ({

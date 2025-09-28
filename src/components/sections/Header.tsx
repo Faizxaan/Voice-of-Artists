@@ -68,13 +68,14 @@ export const Header: React.FC = () => {
       <div className="container max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="logo">
             <Image
-              src="/images/Voice of Artist Logo-2.png"
-              alt="Voice of Artist Logo"
-              width={200}
-              height={60}
-              className="h-12 w-auto filter grayscale"
+              src="/images/Voice of Artist Logo-4.png"
+              alt="VOA Logo"
+              width={120}
+              height={40}
+              className="h-8 w-auto"
+              priority
             />
           </Link>
 
