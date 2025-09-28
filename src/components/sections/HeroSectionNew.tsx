@@ -167,7 +167,7 @@ export const HeroSectionNew: React.FC<HeroSectionProps> = ({
                   transition={{ duration: 1.0, delay: 0.7, ease: "backOut" }}
                 >
                   <Image
-                    src="/images/voa-logo-new.svg"
+                    src="/images/voa-logo-4.svg"
                     alt="VOA Logo"
                     width={350}
                     height={120}
