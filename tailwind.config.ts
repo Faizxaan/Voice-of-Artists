@@ -47,18 +47,27 @@ export default {
         "episode-card": "0 8px 16px -4px rgba(0, 0, 0, 0.1)",
       },
       animation: {
-        "fade-in-up": "fadeInUp 0.6s ease-out",
+        "fade-in-up": "fadeInUp 0.15s ease-out",
+        "fade-in": "fadeIn 0.1s ease-out",
         parallax: "parallax 20s linear infinite",
       },
       keyframes: {
         fadeInUp: {
           "0%": {
             opacity: "0",
-            transform: "translateY(30px)",
+            transform: "translateY(8px)",
           },
           "100%": {
             opacity: "1",
             transform: "translateY(0)",
+          },
+        },
+        fadeIn: {
+          "0%": {
+            opacity: "0",
+          },
+          "100%": {
+            opacity: "1",
           },
         },
         parallax: {

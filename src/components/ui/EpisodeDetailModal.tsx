@@ -36,8 +36,8 @@ export const EpisodeDetailModal: React.FC<EpisodeDetailModalProps> = ({
           text: episode.excerpt,
           url,
         });
-      } catch (err) {
-        console.log("Error sharing:", err);
+      } catch {
+        // Share failed silently
       }
     } else {
       navigator.clipboard.writeText(url);

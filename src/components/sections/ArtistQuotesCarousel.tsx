@@ -143,7 +143,8 @@ export const ArtistQuotesCarousel: React.FC<ArtistQuotesCarouselProps> = ({
   };
 
   const handleQuoteClick = (artist: Artist) => {
-    console.log("Selected artist:", artist);
+    // Future: Navigate to artist detail page or show modal
+    void artist;
   };
 
   const toggleAutoPlay = () => {

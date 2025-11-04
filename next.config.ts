@@ -35,6 +35,22 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
 
+  // Redirects from old blog URLs to new article URLs
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/article',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug',
+        destination: '/article/:slug',
+        permanent: true,
+      },
+    ];
+  },
+
   // Headers for security and performance
   async headers() {
     return [

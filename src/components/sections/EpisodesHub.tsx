@@ -3,30 +3,15 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { VideoThumbnail } from "@/components/ui/VideoPlayer";
 import { EpisodeDetailModal } from "@/components/ui/EpisodeDetailModal";
-import { SectionHeading } from "@/components/ui";
 import { Episode, CategoryType } from "@/types";
 import { Filter, Calendar, User, Tag } from "lucide-react";
 import { getVOAEpisodes } from "@/lib/youtube";
+import { ARTIST_CATEGORIES } from "@/lib/constants";
 
 interface EpisodesHubProps {
   episodes?: Episode[];
   className?: string;
 }
-
-const categories: CategoryType[] = [
-  "Writers",
-  "Directors",
-  "Painters",
-  "Musicians",
-  "Filmmakers",
-  "Designers",
-  "Photographers",
-  "Storytellers",
-  "Curators",
-  "Actors",
-  "Dancers",
-  "Cinematographers",
-];
 
 export const EpisodesHub: React.FC<EpisodesHubProps> = ({
   episodes: propEpisodes,
@@ -51,9 +36,8 @@ export const EpisodesHub: React.FC<EpisodesHubProps> = ({
           setError(null);
           const voaEpisodes = await getVOAEpisodes();
           setEpisodes(voaEpisodes);
-        } catch (err) {
+        } catch {
           setError('Failed to load episodes');
-          console.error('❌ Error loading episodes:', err);
         } finally {
           setLoading(false);
         }
@@ -100,11 +84,8 @@ export const EpisodesHub: React.FC<EpisodesHubProps> = ({
 
   const getVideoId = (url: string) => {
     if (!url) {
-      console.warn('Empty URL provided to getVideoId');
       return "";
     }
-    
-    console.log('🎬 Processing YouTube URL:', url);
     
     // More comprehensive regex to handle different YouTube URL formats
     const regexPatterns = [
@@ -124,18 +105,10 @@ export const EpisodesHub: React.FC<EpisodesHubProps> = ({
       }
     }
     
-    if (!videoId) {
-      console.warn('Failed to extract video ID from URL:', url);
+    if (!videoId || videoId.length !== 11 || !/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
       return "";
     }
     
-    // Validate video ID format (should be 11 characters, alphanumeric + underscores/hyphens)
-    if (videoId.length !== 11 || !/^[a-zA-Z0-9_-]{11}$/.test(videoId)) {
-      console.warn('Invalid video ID format:', videoId);
-      return "";
-    }
-    
-    console.log('✅ Extracted video ID:', videoId);
     return videoId;
   };
 
@@ -207,7 +180,7 @@ export const EpisodesHub: React.FC<EpisodesHubProps> = ({
                     >
                       All Episodes
                     </button>
-                    {categories.map((category) => (
+                    {ARTIST_CATEGORIES.map((category) => (
                       <button
                         key={category}
                         onClick={() => setSelectedCategory(category)}

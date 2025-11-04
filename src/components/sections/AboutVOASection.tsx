@@ -24,7 +24,7 @@ export const AboutVOASection: React.FC = () => {
     <motion.section
       id="about-us"
       ref={ref}
-      className="py-12 bg-white relative overflow-hidden"
+      className="py-20 bg-white relative overflow-hidden"
       style={{ opacity }}
     >
       {/* Enhanced Background Elements with Scroll Animations */}

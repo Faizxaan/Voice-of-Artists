@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { SectionHeading } from "@/components/ui";
 import { Waves, Flame, Users, Target, Sparkles } from "lucide-react";
 

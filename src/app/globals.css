@@ -11,8 +11,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  --header-height: 64px; /* Default, will be updated by JS */
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+}
+
+/* Ensure sections with IDs have proper scroll offset */
+[id] {
+  scroll-margin-top: var(--header-height);
 }
 
 body {
@@ -24,6 +34,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
+  /* Performance optimizations */
+  will-change: scroll-position;
+  transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Subtle texture overlay for brand authenticity - minimal and clean */
@@ -1843,4 +1857,177 @@ html {
     background: transparent !important;
     color: #000000 !important;
   }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* GPU acceleration for animated elements */
+.animate-fade-in-up,
+.animate-fade-in,
+[class*="animate-"] {
+  will-change: opacity, transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize image rendering */
+img,
+video {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Optimize large sections for rendering */
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* Smooth transitions without jank */
+.transition-all,
+.transition-colors,
+.transition-transform {
+  transition-duration: 0.15s !important;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimize hover effects */
+.group:hover .group-hover\:scale-105,
+.hover\:scale-105:hover {
+  transform: scale3d(1.05, 1.05, 1);
+}
+
+/* Faster fade-in for instant visibility */
+@keyframes fastFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fast-fade-in {
+  animation: fastFadeIn 0.1s ease-out;
+}
+
+/* Ultra-fast instant appearance */
+@keyframes instantFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.instant-fade-in {
+  animation: instantFadeIn 0.05s ease-out;
+}
+
+/* Optimize card hover states */
+.episode-card,
+.article-card {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimize scrollbar for better UX */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Hide scrollbar for horizontal scroll sections but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Global animation speed overrides for instant loading */
+* {
+  animation-duration: 0.15s !important;
+}
+
+/* Speed up all transition classes */
+[class*="transition-"],
+[class*="duration-"] {
+  transition-duration: 0.15s !important;
+}
+
+/* Instant opacity changes */
+[class*="opacity-"] {
+  transition: opacity 0.1s ease-out !important;
+}
+
+/* Fast transforms */
+[class*="transform"],
+[class*="translate"],
+[class*="scale"],
+[class*="rotate"] {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Override Framer Motion default durations if present */
+[data-framer-motion] {
+  transition-duration: 0.15s !important;
+}
+
+/* Force fast animations in specific sections */
+#from-our-founders *,
+#voa-vision *,
+#about-voa *,
+#what-is-voa *,
+#brand-philosophy *,
+#artist-quotes * {
+  animation-duration: 0.2s !important;
+  transition-duration: 0.2s !important;
+}
+
+/* Override Framer Motion stagger delays */
+#from-our-founders [class*="motion"],
+#voa-vision [class*="motion"],
+#about-voa [class*="motion"] {
+  transition-delay: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* Aggressive site-wide speed boost */
+div[style*="transition"],
+div[style*="animation"] {
+  transition-duration: 0.2s !important;
+  animation-duration: 0.2s !important;
+}
+
+/* Remove all delays for instant appearance */
+*[style*="delay"] {
+  transition-delay: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* Speed up all motion library animations */
+[class*="motion-"],
+.motion-reduce {
+  animation-duration: 0.15s !important;
+  transition-duration: 0.15s !important;
 }

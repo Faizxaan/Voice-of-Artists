@@ -43,8 +43,8 @@ export const YouTubePlayer: React.FC<YouTubePlayerProps> = ({
           text: description,
           url,
         });
-      } catch (err) {
-        console.log("Error sharing:", err);
+      } catch {
+        // Share failed silently
       }
     } else {
       navigator.clipboard.writeText(url);

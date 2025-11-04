@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Thumbnail Manager - Automatically download and cache YouTube thumbnails
  * This script can be run to download thumbnails for any new episodes

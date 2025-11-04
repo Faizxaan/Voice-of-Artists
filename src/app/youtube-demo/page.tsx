@@ -3,12 +3,9 @@
 import React, { useState, useEffect } from "react";
 import { 
   YouTubeAPIService, 
-  getDemoEpisodes, 
   searchYouTubeVideos, 
   getChannelInfo, 
   DEMO_CHANNELS,
-  formatDuration,
-  YouTubeVideo,
   YouTubeChannel
 } from "@/lib/youtube";
 import { Episode } from "@/types";
@@ -19,7 +16,13 @@ export default function YouTubeAPIDemo() {
   const [channelId, setChannelId] = useState('UC_x5XG1OV2P6uZZ5FSM9Ttw');
   const [searchQuery, setSearchQuery] = useState('');
   const [channelSearchQuery, setChannelSearchQuery] = useState('Voauniverse');
-  const [foundChannels, setFoundChannels] = useState<any[]>([]);
+  const [foundChannels, setFoundChannels] = useState<Array<{
+    id: string;
+    snippet: {
+      title: string;
+      thumbnails: { default: { url: string } };
+    };
+  }>>([]);
   const [findingChannels, setFindingChannels] = useState(false);
   
   const [channelInfo, setChannelInfo] = useState<YouTubeChannel | null>(null);
@@ -50,14 +53,8 @@ export default function YouTubeAPIDemo() {
     try {
       const info = await getChannelInfo(channelId);
       setChannelInfo(info);
-      
-      if (info) {
-        console.log('Channel stats:', info.statistics);
-        console.log('Upload playlist:', info.contentDetails.relatedPlaylists.uploads);
-      }
-    } catch (err) {
+    } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error fetching channel info');
-      console.error('Error:', err);
     } finally {
       setLoading(false);
     }
@@ -77,7 +74,7 @@ export default function YouTubeAPIDemo() {
       const videos = await youtubeService.getChannelVideos(channelId, 20);
       
       // Convert to episodes
-      const episodeList = videos.map((video: any, index: number) => ({
+      const episodeList = videos.map((video, index: number) => ({
         id: video.id,
         title: video.snippet.title,
         slug: video.snippet.title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
@@ -92,9 +89,8 @@ export default function YouTubeAPIDemo() {
       }));
       
       setEpisodes(episodeList);
-    } catch (err) {
+    } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error fetching videos');
-      console.error('Error:', err);
     } finally {
       setLoading(false);
     }
@@ -112,9 +108,8 @@ export default function YouTubeAPIDemo() {
     try {
       const results = await searchYouTubeVideos(searchQuery, 15);
       setSearchResults(results);
-    } catch (err) {
+    } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error searching videos');
-      console.error('Error:', err);
     } finally {
       setLoading(false);
     }
@@ -148,7 +143,7 @@ export default function YouTubeAPIDemo() {
         setChannelId(data.suggestions.voauniverse.id);
       }
       
-    } catch (err) {
+    } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Failed to find channels');
     } finally {
       setFindingChannels(false);

@@ -105,7 +105,7 @@ export default function AdminPage() {
                 <ul className="space-y-2 text-xs font-mono">
                   <li>• Submit artist portfolio</li>
                   <li>• Record podcast-style video</li>
-                  <li>• Write creative journey blog</li>
+                  <li>• Share your creative journey</li>
                   <li>• Join VOA community</li>
                 </ul>
               </div>

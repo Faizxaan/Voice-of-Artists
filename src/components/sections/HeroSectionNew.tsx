@@ -1,18 +1,14 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { VideoLightbox } from "@/components/ui/VideoPlayer";
 
 interface HeroSectionProps {
   featuredVideoId?: string;
 }
 
-export const HeroSectionNew: React.FC<HeroSectionProps> = ({
-  featuredVideoId = "dQw4w9WgXcQ",
-}) => {
-  const [showVideoLightbox, setShowVideoLightbox] = useState(false);
+export const HeroSectionNew: React.FC<HeroSectionProps> = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { amount: 0.3, margin: "0px 0px -200px 0px" });
   const { scrollYProgress } = useScroll({
@@ -23,10 +19,6 @@ export const HeroSectionNew: React.FC<HeroSectionProps> = ({
   // Parallax effects
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.3]);
-
-  const handleWatchLatest = () => {
-    setShowVideoLightbox(true);
-  };
 
   return (
     <>
@@ -230,20 +222,6 @@ export const HeroSectionNew: React.FC<HeroSectionProps> = ({
           </div>
         </div>
       </motion.section>
-
-      {/* Video Lightbox */}
-      {featuredVideoId && (
-        <VideoLightbox
-          isOpen={showVideoLightbox}
-          onClose={() => setShowVideoLightbox(false)}
-          videoProps={{
-            videoId: featuredVideoId,
-            title: "Latest VOA Episode",
-            description: "Watch our latest featured artist episode",
-            showTranscript: true,
-          }}
-        />
-      )}
     </>
   );
 };

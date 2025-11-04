@@ -1,5 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+interface SearchItem {
+  snippet: {
+    channelId: string;
+  };
+}
+
+interface ChannelItem {
+  id: string;
+  snippet: {
+    title: string;
+    description: string;
+    customUrl?: string;
+    publishedAt: string;
+    thumbnails: Record<string, unknown>;
+  };
+  statistics: {
+    subscriberCount?: string;
+    videoCount?: string;
+    viewCount?: string;
+  };
+}
+
+interface Channel {
+  id: string;
+  title: string;
+  description: string;
+  customUrl: string;
+  publishedAt: string;
+  thumbnails: Record<string, unknown>;
+  statistics: {
+    subscriberCount: string;
+    videoCount: string;
+    viewCount: string;
+  };
+}
+
 // YouTube Channel ID Finder API Route
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -37,7 +73,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get detailed information for each found channel
-    const channelIds = searchData.items.map((item: any) => item.snippet.channelId);
+    const channelIds = (searchData.items as SearchItem[]).map((item) => item.snippet.channelId);
     const channelsResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${channelIds.join(',')}&key=${apiKey}`
     );
@@ -52,7 +88,7 @@ export async function GET(request: NextRequest) {
 
     const channelsData = await channelsResponse.json();
     
-    const channels = channelsData.items.map((item: any) => ({
+    const channels: Channel[] = (channelsData.items as ChannelItem[]).map((item) => ({
       id: item.id,
       title: item.snippet.title,
       description: item.snippet.description,
@@ -70,17 +106,16 @@ export async function GET(request: NextRequest) {
       query: channelName,
       channels,
       suggestions: {
-        voauniverse: channels.find((ch: any) => 
+        voauniverse: channels.find((ch) => 
           ch.title.toLowerCase().includes('voice') && 
           ch.title.toLowerCase().includes('artist')
-        ) || channels.find((ch: any) => 
+        ) || channels.find((ch) => 
           ch.title.toLowerCase().includes('voa')
         ) || channels[0]
       }
     });
 
   } catch (error) {
-    console.error('Error finding channel:', error);
     return NextResponse.json(
       { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }

@@ -70,3 +70,45 @@ export type CategoryType =
   | "Actors"
   | "Dancers"
   | "Cinematographers";
+
+// Article Types
+export interface ArticlePost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string; // Markdown or rich text
+  featured_image: string;
+  author: {
+    name: string;
+    bio?: string;
+    avatar?: string;
+  };
+  category: CategoryType;
+  tags: string[];
+  published_at: string; // ISO date string
+  updated_at?: string;
+  read_time?: number; // minutes
+  published: boolean;
+}
+
+export interface ArticleCategory {
+  id: string;
+  name: CategoryType;
+  slug: string;
+  description?: string;
+}
+
+export interface ArticleTag {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+export interface AdminUser {
+  id: string;
+  username: string;
+  name: string;
+  email: string;
+  role: "admin" | "editor";
+}

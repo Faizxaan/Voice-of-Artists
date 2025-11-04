@@ -128,6 +128,23 @@ export interface YouTubeAPIResponse<T> {
   items: T[];
 }
 
+export interface YouTubeSearchResult {
+  kind: string;
+  etag: string;
+  id: {
+    kind: string;
+    videoId: string;
+  };
+  snippet: {
+    publishedAt: string;
+    channelId: string;
+    title: string;
+    description: string;
+    thumbnails: YouTubeThumbnails;
+    channelTitle: string;
+  };
+}
+
 // YouTube API configuration
 const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY || '';
 const VOA_CHANNEL_ID = process.env.NEXT_PUBLIC_VOA_CHANNEL_ID || 'UCYourChannelIdHere';
@@ -257,7 +274,6 @@ export class YouTubeAPIService {
 
     try {
       const url = `${this.baseUrl}/channels?part=contentDetails,snippet,statistics&id=${channelId}&key=${this.apiKey}`;
-      console.log('🔍 Fetching channel details:', channelId);
       
       const response = await fetch(url);
       
@@ -268,16 +284,14 @@ export class YouTubeAPIService {
       const data: YouTubeAPIResponse<YouTubeChannel> = await response.json();
       
       if (data.items && data.items.length > 0) {
-        console.log('✅ Channel found:', data.items[0].snippet.title);
         return data.items[0];
       }
-      
-      return null;
-    } catch (error) {
-      console.error('❌ Error fetching channel details:', error);
-      throw error;
-    }
+    
+    return null;
+  } catch (error: unknown) {
+    throw error;
   }
+}
 
   /**
    * Step 2: Get videos from uploads playlist (paginated)
@@ -299,7 +313,6 @@ export class YouTubeAPIService {
         url += `&pageToken=${pageToken}`;
       }
 
-      console.log('🎵 Fetching playlist videos:', playlistId);
       const response = await fetch(url);
       
       if (!response.ok) {
@@ -307,10 +320,8 @@ export class YouTubeAPIService {
       }
 
       const data = await response.json();
-      console.log(`📋 Found ${data.items?.length || 0} videos in playlist`);
       return data;
-    } catch (error) {
-      console.error('❌ Error fetching playlist videos:', error);
+    } catch (error: unknown) {
       throw error;
     }
   }
@@ -335,7 +346,6 @@ export class YouTubeAPIService {
 
       for (const chunk of chunks) {
         const url = `${this.baseUrl}/videos?part=snippet,statistics,contentDetails&id=${chunk.join(',')}&key=${this.apiKey}`;
-        console.log(`🎥 Fetching details for ${chunk.length} videos`);
         
         const response = await fetch(url);
         
@@ -346,13 +356,11 @@ export class YouTubeAPIService {
         const data: YouTubeAPIResponse<YouTubeVideo> = await response.json();
         if (data.items) {
           allVideos.push(...data.items);
-          console.log(`✅ Got ${data.items.length} video details`);
         }
       }
 
       return allVideos;
-    } catch (error) {
-      console.error('❌ Error fetching video details:', error);
+    } catch (error: unknown) {
       throw error;
     }
   }
@@ -362,8 +370,6 @@ export class YouTubeAPIService {
    */
   async getChannelVideos(channelId: string, maxResults: number = 50): Promise<YouTubeVideo[]> {
     try {
-      console.log(`🎬 Starting complete workflow for channel: ${channelId}`);
-      
       // Step 1: Get channel details
       const channel = await this.getChannelDetails(channelId);
       if (!channel) {
@@ -371,25 +377,20 @@ export class YouTubeAPIService {
       }
 
       const uploadsPlaylistId = channel.contentDetails.relatedPlaylists.uploads;
-      console.log(`📋 Uploads playlist ID: ${uploadsPlaylistId}`);
 
       // Step 2: Get video IDs from uploads playlist
       const playlistResponse = await this.getPlaylistVideos(uploadsPlaylistId, maxResults);
       const videoIds = playlistResponse.items.map(item => item.contentDetails.videoId);
-      console.log(`🎥 Found ${videoIds.length} video IDs`);
 
       if (videoIds.length === 0) {
-        console.log('⚠️ No videos found in uploads playlist');
         return [];
       }
 
       // Step 3: Get full video details
       const videos = await this.getVideoDetails(videoIds);
-      console.log(`✅ Retrieved ${videos.length} complete video details`);
 
       return videos;
-    } catch (error) {
-      console.error('❌ Error in complete workflow:', error);
+    } catch (error: unknown) {
       throw error;
     }
   }
@@ -432,7 +433,6 @@ export function formatDuration(duration: string): string {
 export function convertYouTubeToEpisode(video: YouTubeVideo, index: number): import('@/types').Episode {
   // Determine category based on title keywords and tags
   const title = video.snippet.title.toLowerCase();
-  const description = video.snippet.description.toLowerCase();
   const tags = video.snippet.tags || [];
   
   let category: import('@/types').CategoryType = 'Storytellers';
@@ -442,8 +442,7 @@ export function convertYouTubeToEpisode(video: YouTubeVideo, index: number): imp
     category = CATEGORY_OVERRIDES[video.id];
   } else {
     // Smart category detection
-  // Smart category detection
-  if (title.includes('paint') || title.includes('color') || title.includes('canvas') || 
+    if (title.includes('paint') || title.includes('color') || title.includes('canvas') ||
       tags.some(tag => ['paint', 'painting', 'artist', 'canvas'].some(keyword => tag.toLowerCase().includes(keyword)))) {
     category = 'Painters';
   } else if (title.includes('music') || title.includes('rhythm') || title.includes('sound') || title.includes('song') ||
@@ -485,7 +484,7 @@ export function convertYouTubeToEpisode(video: YouTubeVideo, index: number): imp
   const extractedTags: string[] = [];
   const content = `${video.snippet.title} ${video.snippet.description}`.toLowerCase();
   
-  const keywordMap = {
+  const keywordMap: Record<string, string> = {
     'creative': 'creative',
     'creativity': 'creative',
     'art': 'art',
@@ -840,13 +839,8 @@ export const fallbackEpisodes: import('@/types').Episode[] = [
  * Main function to get VOA episodes using YouTube Data API
  */
 export async function getVOAEpisodes(): Promise<import('@/types').Episode[]> {
-  console.log('🚀 Starting getVOAEpisodes');
-  console.log('📺 VOA_CHANNEL_ID:', VOA_CHANNEL_ID);
-  console.log('🔑 YOUTUBE_API_KEY available:', !!YOUTUBE_API_KEY);
-  
   // Use fallback if no API key
   if (!YOUTUBE_API_KEY) {
-    console.log('⚠️ No YouTube API key found, using fallback episodes');
     return fallbackEpisodes;
   }
 
@@ -857,26 +851,19 @@ export async function getVOAEpisodes(): Promise<import('@/types').Episode[]> {
     const channelId = VOA_CHANNEL_ID !== 'UCYourChannelIdHere' 
       ? VOA_CHANNEL_ID 
       : DEMO_CHANNELS.googleDev; // Use Google Developers as demo
-      
-    console.log('🎯 Using channel ID:', channelId);
     
     // Fetch videos using the complete YouTube API workflow
     const videos = await youtubeService.getChannelVideos(channelId, 50);
-    console.log('📹 Raw YouTube videos received:', videos.length);
     
     if (videos.length === 0) {
-      console.log('⚠️ No videos found, using fallback episodes');
       return fallbackEpisodes;
     }
     
     // Convert to Episode format
     const episodes = videos.map((video, index) => convertYouTubeToEpisode(video, index));
-    console.log('✨ Converted to episodes:', episodes.length);
     
     return episodes;
-  } catch (error) {
-    console.error('❌ Error loading episodes from YouTube API:', error);
-    console.log('🔄 Falling back to demo episodes');
+  } catch {
     return fallbackEpisodes;
   }
 }
@@ -886,19 +873,16 @@ export async function getVOAEpisodes(): Promise<import('@/types').Episode[]> {
  */
 export async function getDemoEpisodes(channelKey: keyof typeof DEMO_CHANNELS): Promise<import('@/types').Episode[]> {
   if (!YOUTUBE_API_KEY) {
-    console.log('⚠️ No YouTube API key, using fallback episodes');
     return fallbackEpisodes;
   }
 
   try {
     const youtubeService = new YouTubeAPIService(YOUTUBE_API_KEY);
     const channelId = DEMO_CHANNELS[channelKey];
-    console.log(`🎯 Getting demo episodes from ${channelKey}:`, channelId);
     
     const videos = await youtubeService.getChannelVideos(channelId, 20);
     return videos.map((video, index) => convertYouTubeToEpisode(video, index));
-  } catch (error) {
-    console.error(`❌ Error loading demo episodes from ${channelKey}:`, error);
+  } catch {
     return fallbackEpisodes;
   }
 }
@@ -915,8 +899,6 @@ export async function searchYouTubeVideos(query: string, maxResults: number = 25
   const youtubeService = new YouTubeAPIService(YOUTUBE_API_KEY);
   
   try {
-    console.log(`🔍 Searching YouTube for: "${query}"`);
-    
     const url = `${BASE_URL}/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=${maxResults}&key=${YOUTUBE_API_KEY}`;
     const response = await fetch(url);
     
@@ -924,19 +906,17 @@ export async function searchYouTubeVideos(query: string, maxResults: number = 25
       throw new Error(`YouTube API error: ${response.status} ${response.statusText}`);
     }
 
-    const data: YouTubeAPIResponse<any> = await response.json();
-    console.log(`🎥 Found ${data.items?.length || 0} search results`);
+    const data: YouTubeAPIResponse<YouTubeSearchResult> = await response.json();
     
     if (!data.items || data.items.length === 0) {
       return [];
     }
     
-    const videoIds = data.items.map((item: any) => item.id.videoId);
+    const videoIds = data.items.map((item) => item.id.videoId);
     const videos = await youtubeService.getVideoDetails(videoIds);
     
     return videos.map((video, index) => convertYouTubeToEpisode(video, index));
-  } catch (error) {
-    console.error('❌ Error searching YouTube videos:', error);
+  } catch (error: unknown) {
     throw error;
   }
 }
@@ -946,7 +926,6 @@ export async function searchYouTubeVideos(query: string, maxResults: number = 25
  */
 export async function getChannelInfo(channelId?: string): Promise<YouTubeChannel | null> {
   if (!YOUTUBE_API_KEY) {
-    console.log('⚠️ No YouTube API key for channel info');
     return null;
   }
 
@@ -955,8 +934,7 @@ export async function getChannelInfo(channelId?: string): Promise<YouTubeChannel
     const targetChannelId = channelId || VOA_CHANNEL_ID || DEMO_CHANNELS.googleDev;
     
     return await youtubeService.getChannelDetails(targetChannelId);
-  } catch (error) {
-    console.error('❌ Error getting channel info:', error);
+  } catch {
     return null;
   }
 }
